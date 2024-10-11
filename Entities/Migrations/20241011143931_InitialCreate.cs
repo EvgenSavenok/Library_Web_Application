@@ -1,7 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace Entities.Migrations
 {
@@ -15,7 +18,8 @@ namespace Entities.Migrations
                 name: "Authors",
                 columns: table => new
                 {
-                    AuthorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    AuthorId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     LastName = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     BirthDate = table.Column<string>(type: "text", nullable: false),
@@ -30,7 +34,8 @@ namespace Entities.Migrations
                 name: "Books",
                 columns: table => new
                 {
-                    BookId = table.Column<Guid>(type: "uuid", nullable: false),
+                    BookId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ISBN = table.Column<string>(type: "text", nullable: false),
                     BookTitle = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     Genre = table.Column<int>(type: "integer", nullable: false),
@@ -47,12 +52,16 @@ namespace Entities.Migrations
             migrationBuilder.InsertData(
                 table: "Authors",
                 columns: new[] { "AuthorId", "BirthDate", "Country", "LastName", "Name" },
-                values: new object[] { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "15 May", "Belarus", "Arefin", "Vlados" });
+                values: new object[] { 1, "15 May", "Belarus", "Arefin", "Vlados" });
 
             migrationBuilder.InsertData(
                 table: "Books",
                 columns: new[] { "BookId", "Author", "BookTitle", "Description", "Genre", "ISBN", "ReceiptTime", "ReturnTime" },
-                values: new object[] { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Vlados", "IT_Solutions Ltd", "AAAAA", 0, "00000000", new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc), new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc) });
+                values: new object[,]
+                {
+                    { 1, "Vlados", "IT_Solutions Ltd", "AAAAA", 0, "00000000", new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc), new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc) },
+                    { 2, "Vlados", "IT_Solutions Ltd", "AAAAA", 0, "00000000", new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc), new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc) }
+                });
         }
 
         /// <inheritdoc />

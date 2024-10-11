@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Entities.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20241011115251_InitialData")]
-    partial class InitialData
+    [Migration("20241011143931_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,12 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Models.Author", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
+                        .HasColumnType("integer")
                         .HasColumnName("AuthorId");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BirthDate")
                         .IsRequired()
@@ -57,7 +59,7 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                            Id = 1,
                             BirthDate = "15 May",
                             Country = "Belarus",
                             LastName = "Arefin",
@@ -67,10 +69,12 @@ namespace Entities.Migrations
 
             modelBuilder.Entity("Entities.Models.Book", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
+                        .HasColumnType("integer")
                         .HasColumnName("BookId");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -105,7 +109,7 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                            Id = 1,
                             Author = "Vlados",
                             BookTitle = "IT_Solutions Ltd",
                             Description = "AAAAA",
@@ -116,7 +120,7 @@ namespace Entities.Migrations
                         },
                         new
                         {
-                            Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
+                            Id = 2,
                             Author = "Vlados",
                             BookTitle = "IT_Solutions Ltd",
                             Description = "AAAAA",

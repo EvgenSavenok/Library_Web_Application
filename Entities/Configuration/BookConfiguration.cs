@@ -12,7 +12,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
         (
             new Book
             {
-                Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                Id = 1,
                 BookTitle = "IT_Solutions Ltd",
                 ISBN = "00000000",
                 Genre = BookGenre.Adventures,
@@ -23,7 +23,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
             },
             new Book
             {
-                Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
+                Id = 2,
                 BookTitle = "IT_Solutions Ltd",
                 ISBN = "00000000",
                 Genre = BookGenre.Adventures,

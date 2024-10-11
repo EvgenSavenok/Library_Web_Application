@@ -12,7 +12,7 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
         (
             new Author
             {
-                Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
+                Id = 1,
                 Name = "Vlados",
                 LastName = "Arefin",
                 BirthDate = "15 May",

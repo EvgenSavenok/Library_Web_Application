@@ -14,7 +14,7 @@ public enum BookGenre
 public class Book
 {
     [Column("BookId")]
-    public Guid Id { get; set; }
+    public int Id { get; set; }
     public string ISBN { get; set; }
     [Required(ErrorMessage = "Book title is a required field.")]
     [MaxLength(60, ErrorMessage = "Maximum length for the title is 60 characters.")]
