@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entities;
 using Entities.DataTransferObjects;
 using Entities.Models;
 
@@ -9,6 +10,8 @@ public class Mapping : Profile
     public Mapping()
     {
         CreateMap<Book, BookDto>();
+        //CreateMap<UserForRegistrationDto, User>();
+        CreateMap<BookForCreationDto, Book>();
     }
 }
 

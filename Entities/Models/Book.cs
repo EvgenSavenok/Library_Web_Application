@@ -5,10 +5,10 @@ namespace Entities.Models;
 
 public enum BookGenre
 {
-    Adventures, 
-    LoveStories,
-    Horrors,
-    FairyTales
+    Adventures = 1, 
+    LoveStories = 2,
+    Horrors = 3,
+    FairyTales = 4
 }
 
 public class Book
