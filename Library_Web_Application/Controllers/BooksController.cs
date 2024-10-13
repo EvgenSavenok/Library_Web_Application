@@ -18,17 +18,17 @@ public class BooksController : Controller
         _mapper = mapper;
     }
     [HttpGet]
-     public IActionResult GetBooks()
+     public async Task<IActionResult> GetBooks()
      {
-         var books = _repository.Book.GetAllBooks(trackChanges: false);
+         var books = await _repository.Book.GetAllBooksAsync(trackChanges: false);
          var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
          return Ok(booksDto);
      }
 
     [HttpGet("{id}", Name = "BookById")]
-    public IActionResult GetBook(int id)
+    public async Task<IActionResult> GetBook(int id)
     {
-        var book = _repository.Book.GetBook(id, trackChanges: false);
+        var book = await _repository.Book.GetBookAsync(id, trackChanges: false);
         if (book == null)
         {
             return NotFound();
@@ -41,17 +41,51 @@ public class BooksController : Controller
     }
     
     [HttpPost]
-    public IActionResult CreateBook([FromBody]BookForCreationDto book)
+    public async Task<IActionResult> CreateBook([FromBody]BookForCreationDto book)
     {
         if(book == null)
         {
             return BadRequest("BookForCreationDto object is null");
         }
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
         var bookEntity = _mapper.Map<Book>(book);
         _repository.Book.CreateBook(bookEntity);
-        _repository.Save();
+        await _repository.SaveAsync();
         var bookToReturn = _mapper.Map<BookDto>(bookEntity);
         return CreatedAtRoute("BookById", new { id = bookToReturn.Id}, 
             bookToReturn);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteBook(int id)
+    {
+        var book = await _repository.Book.GetBookAsync(id, trackChanges: false);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        _repository.Book.DeleteBook(book);
+        await _repository.SaveAsync();
+        return NoContent();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateBook(int id, [FromBody]BookForUpdateDto book)
+    {
+        if (book == null)
+        {
+            return BadRequest("CompanyForUpdateDto object is null");
+        }
+        var bookEntity = await _repository.Book.GetBookAsync(id, trackChanges: true);
+        if (bookEntity == null)
+        {
+            return NotFound();
+        }
+        _mapper.Map(book, bookEntity);
+        await _repository.SaveAsync();
+        return NoContent();
     }
 }

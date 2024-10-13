@@ -1,4 +1,5 @@
 using Library_Web_Application.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
+builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

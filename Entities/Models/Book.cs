@@ -17,7 +17,7 @@ public class Book
     public int Id { get; set; }
     public string ISBN { get; set; }
     [Required(ErrorMessage = "Book title is a required field.")]
-    [MaxLength(60, ErrorMessage = "Maximum length for the title is 60 characters.")]
+    [MaxLength(30, ErrorMessage = "Maximum length for the title is 30 characters.")]
     public string BookTitle { get; set; }
     [Required(ErrorMessage = "Book genre is a required field.")]
     public BookGenre Genre { get; set; }
