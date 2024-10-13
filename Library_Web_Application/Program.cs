@@ -17,7 +17,9 @@ builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 builder.Services.ConfigureSwagger();
 builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
-builder.Services.AddControllers();
+builder.Services.AddRazorPages();
+
+builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -42,4 +44,5 @@ app.UseAuthorization();
 app.ConfigureExceptionHandler();
 
 app.MapControllers();
+app.MapRazorPages();
 app.Run();

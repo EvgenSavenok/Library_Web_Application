@@ -24,16 +24,16 @@ public class AuthenticationController : Controller
     [HttpGet("registerPage")]
     public IActionResult RegisterPage()
     {
-        return View("~/Views/Auth/Register.cshtml");
+        return View("~/Views/Auth/RegisterPage.cshtml");
     }
     
     [HttpGet("loginPage")]
     public IActionResult LoginPage()
     {
-        return View("~/Views/Auth/Login.cshtml");
+        return View("~/Views/Auth/LoginPage.cshtml");
     }
     
-    [HttpPost]
+    [HttpPost("register")]
     public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
     {
         var user = _mapper.Map<User>(userForRegistration);
@@ -46,13 +46,16 @@ public class AuthenticationController : Controller
             }
             return BadRequest(ModelState);
         }
-        await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
+        var rolesAsStrings = Enum.GetValues(typeof(UserForRegistrationDto.UserRole))
+            .Cast<UserForRegistrationDto.UserRole>()            
+            .Select(role => role.ToString()) 
+            .ToList(); 
+        await _userManager.AddToRolesAsync(user, rolesAsStrings);
         return StatusCode(201);
     }
     
     [HttpPost("login")]
-    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto
-        user)
+    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
     {
         if (!await _authManager.ValidateUser(user))
         {

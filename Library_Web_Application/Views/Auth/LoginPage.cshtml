@@ -1,0 +1,61 @@
+﻿@page
+@model Entities.DataTransferObjects.UserForAuthenticationDto
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/Views/Auth/login_page_styles.css" />
+</head>
+<body>
+<div asp-action="DisplayLoginPage" method="post">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="UserName">Username:</label>
+        <input type="text" id="UserName" required />
+
+        <label for="Password">Password:</label>
+        <input type="password" id="Password" required />
+
+        <input type="submit" value="Login" />
+    </form>
+    <button id="registerButton" onclick="window.location.href='/api/authentication/registerPage'">Register</button>
+    <div class="response" id="response"></div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); 
+
+        const username = document.getElementById('UserName').value;
+        const password = document.getElementById('Password').value;
+
+        const loginData = {
+            username: username,
+            password: password
+        };
+
+        try {
+            const response = await fetch('/api/authentication/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(loginData) 
+            });
+
+            const result = await response.json(); 
+            const responseDiv = document.getElementById('response');
+            
+            if (response.ok) {            
+                window.location.href = "/api/books";
+            } else {               
+                responseDiv.innerHTML = 'Login failed: ' + JSON.stringify(result);
+            }
+        } catch (error) {
+            document.getElementById('response').innerHTML = 'Error: ' + error;
+        }
+    });
+</script>
+</body>
+</html>

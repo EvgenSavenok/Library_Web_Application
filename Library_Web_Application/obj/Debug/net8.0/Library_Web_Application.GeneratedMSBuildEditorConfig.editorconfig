@@ -18,10 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\eugen\RiderProjects\Library_Web_Application\Library_Web_Application
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Auth/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
+[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Auth/LoginPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpblBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Auth/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
+[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Auth/RegisterPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3RlclBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

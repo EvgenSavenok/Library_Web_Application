@@ -4,6 +4,11 @@ namespace Entities.DataTransferObjects;
 
 public class UserForRegistrationDto
 {
+    public enum UserRole
+    {
+        User,
+        Administrator
+    }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     [Required(ErrorMessage = "Username is required")]
@@ -12,5 +17,5 @@ public class UserForRegistrationDto
     public string Password { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
-    public ICollection<string> Roles { get; set; }
+    public UserRole Role { get; set; }
 }
