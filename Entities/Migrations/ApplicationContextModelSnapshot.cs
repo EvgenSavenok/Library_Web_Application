@@ -73,14 +73,17 @@ namespace Entities.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("BookTitle")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("character varying(60)");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -93,12 +96,6 @@ namespace Entities.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("ReceiptTime")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("ReturnTime")
-                        .HasColumnType("timestamp with time zone");
-
                     b.HasKey("Id");
 
                     b.ToTable("Books");
@@ -107,24 +104,22 @@ namespace Entities.Migrations
                         new
                         {
                             Id = 1,
+                            Amount = 0,
                             Author = "Vlados",
                             BookTitle = "IT_Solutions Ltd",
                             Description = "AAAAA",
-                            Genre = 0,
-                            ISBN = "00000000",
-                            ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc),
-                            ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc)
+                            Genre = 1,
+                            ISBN = "00000000"
                         },
                         new
                         {
                             Id = 2,
+                            Amount = 0,
                             Author = "Vlados",
                             BookTitle = "IT_Solutions Ltd",
                             Description = "AAAAA",
-                            Genre = 0,
-                            ISBN = "00000000",
-                            ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc),
-                            ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, 0, DateTimeKind.Utc)
+                            Genre = 1,
+                            ISBN = "00000000"
                         });
                 });
 
@@ -228,13 +223,13 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "3ace7c3f-0c18-42d2-82a2-bb0d8ec881f7",
+                            Id = "5e11f201-46ae-4b1f-a96e-9d54a1fe0c22",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "fc30e264-f778-4333-8f37-ad8b3c441e41",
+                            Id = "96871ff2-d150-4453-a8f3-9127006392ba",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

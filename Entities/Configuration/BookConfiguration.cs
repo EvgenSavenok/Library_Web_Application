@@ -18,8 +18,8 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
                 Genre = BookGenre.Adventures,
                 Description = "AAAAA",
                 Author = "Vlados",
-                ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc),
-                ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc)
+                // ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc),
+                // ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc)
             },
             new Book
             {
@@ -29,8 +29,6 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
                 Genre = BookGenre.Adventures,
                 Description = "AAAAA",
                 Author = "Vlados",
-                ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc),
-                ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc)
             }
         );
     }

@@ -25,6 +25,7 @@ public class Book
     public string Description { get; set; }
     [Required(ErrorMessage = "Author is a required field.")]
     public string Author { get; set; }
-    public DateTime ReceiptTime { get; set; }
-    public DateTime ReturnTime { get; set; }
+    public int Amount { get; set; }
+    // public DateTime ReceiptTime { get; set; }
+    // public DateTime ReturnTime { get; set; }
 }

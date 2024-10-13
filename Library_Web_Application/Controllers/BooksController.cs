@@ -2,6 +2,8 @@
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library_Web_Application.Controllers;
@@ -17,13 +19,13 @@ public class BooksController : Controller
         _repository = repository;
         _mapper = mapper;
     }
-    [HttpGet]
-     public async Task<IActionResult> GetBooks()
-     {
-         var books = await _repository.Book.GetAllBooksAsync(trackChanges: false);
-         var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
-         return Ok(booksDto);
-     }
+    [HttpGet(Name = "GetBooks"), Authorize]
+    public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
+    {
+        var books = await _repository.Book.GetAllBooksAsync(requestParameters, trackChanges: false);
+        var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
+        return Ok(booksDto);
+    }
 
     [HttpGet("{id}", Name = "BookById")]
     public async Task<IActionResult> GetBook(int id)
@@ -33,11 +35,8 @@ public class BooksController : Controller
         {
             return NotFound();
         }
-        else
-        {
-            var bookDto = _mapper.Map<BookDto>(book);
-            return Ok(bookDto);
-        }
+        var bookDto = _mapper.Map<BookDto>(book);
+        return Ok(bookDto);
     }
     
     [HttpPost]

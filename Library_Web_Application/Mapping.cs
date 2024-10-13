@@ -10,7 +10,7 @@ public class Mapping : Profile
     public Mapping()
     {
         CreateMap<Book, BookDto>();
-        //CreateMap<UserForRegistrationDto, User>();
+        CreateMap<UserForRegistrationDto, User>();
         CreateMap<BookForCreationDto, Book>();
         CreateMap<BookForUpdateDto, Book>();
     }
