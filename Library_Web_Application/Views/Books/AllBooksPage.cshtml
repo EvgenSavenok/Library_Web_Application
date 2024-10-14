@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Page</title>
+</head>
+<body>
+    <h1>Books</h1>
+    <div id="booksList"></div>
+    <script>
+        // async function loadBooks() {
+        //     // Получаем токен из localStorage
+        //     const token = localStorage.getItem('authToken');
+        //    
+        //     // Если токена нет, перенаправляем пользователя на страницу логина
+        //     if (!token) {
+        //         window.location.href = "/api/authentication/loginPage";
+        //         return;
+        //     }
+        //
+        //     try {
+        //         // Делаем запрос к API для получения списка книг
+        //         const response = await fetch('/api/books/booksPage', {
+        //             method: 'GET',
+        //             headers: {
+        //                 'Authorization': `Bearer ${token}`,
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         });
+        //
+        //         // Обрабатываем ответ от сервера
+        //         if (response.ok) {
+        //             const books = await response.json();
+        //             //displayBooks(books); // Функция для отображения книг на странице
+        //         } else {
+        //             console.log('Failed to load books: ' + response.status);
+        //             document.getElementById('booksList').innerHTML = "Failed to load books. Please login again.";
+        //         }
+        //     } catch (error) {
+        //         console.error('Error loading books:', error);
+        //         document.getElementById('booksList').innerHTML = "Error loading books. Please try again later.";
+        //     }
+        // }
+        //
+        // // Функция для отображения книг
+        // // function displayBooks(books) {
+        // //     const booksList = document.getElementById('booksList');
+        // //     booksList.innerHTML = ''; // Очищаем список перед выводом
+        // //
+        // //     books.forEach(book => {
+        // //         const bookItem = document.createElement('div');
+        // //         bookItem.innerHTML = `<h3>${book.title}</h3><p>Author: ${book.author}</p>`;
+        // //         booksList.appendChild(bookItem);
+        // //     });
+        // // }
+        //
+        // // Загружаем книги при загрузке страницы
+        // loadBooks();
+    </script>
+</body>
+</html>

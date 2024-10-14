@@ -19,6 +19,13 @@ public class BooksController : Controller
         _repository = repository;
         _mapper = mapper;
     }
+    
+    [HttpGet("booksPage"), Authorize(Roles = "Administrator")]
+    public IActionResult BooksPage()
+    {
+        return View("~/Views/Books/AllBooksPage.cshtml");
+    }
+    
     [HttpGet(Name = "GetBooks"), Authorize]
     public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
     {

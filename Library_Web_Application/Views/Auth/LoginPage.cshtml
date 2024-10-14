@@ -41,14 +41,28 @@
             const response = await fetch('/api/authentication/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(loginData) 
+                body: JSON.stringify(loginData)
             });
-
+        
             const result = await response.json(); 
             const responseDiv = document.getElementById('response');
             
-            if (response.ok) {            
-                window.location.href = "/api/books";
+            if (response.ok) {  
+                localStorage.setItem('authToken', result.token);
+                const token = localStorage.getItem('authToken');                
+                const booksResponse = await fetch('/api/books/booksPage', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+        
+                if (booksResponse.ok) {
+                    document.documentElement.innerHTML = await booksResponse.text(); 
+                } else {
+                    responseDiv.innerHTML = 'Authorization failed: ' + await booksResponse.text();
+                }
             } else {               
                 responseDiv.innerHTML = 'Login failed: ' + JSON.stringify(result);
             }
