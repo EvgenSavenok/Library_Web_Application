@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Contracts;
 using Library_Web_Application.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,10 @@ builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelS
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
