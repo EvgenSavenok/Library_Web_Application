@@ -4,12 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Page</title>
+    <link rel="stylesheet" href="~/CSS/books_table_styles.css">
 </head>
 <body>
-<div id="booksList"><button></button></div>
+    <table id="booksTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Description</th>
+                <th>Genre</th>
+                <th>Author</th>
+                <th>Available Copies</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="booksTableBody"></tbody>
+    </table>
+
     <script>
         async function loadBooks() {
-            const token = localStorage.getItem('authToken');           
+            const token = localStorage.getItem('authToken');
             if (!token) {
                 window.location.href = "/api/authentication/loginPage";
                 return;
@@ -24,30 +40,40 @@
                 });
                 if (response.ok) {
                     const books = await response.json();
-                    //document.getElementById('booksList').innerHTML = "All ok";
-                    displayBooks(books); 
+                    console.log(books); 
+                    displayBooks(books);
                 } else {
-                    document.getElementById('booksList').innerHTML = "Failed to load books. Please login again.";
+                    document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Failed to load books. Please login again.</td></tr>";
                 }
             } catch (error) {
-                document.getElementById('booksList').innerHTML = "Error loading books. Please try again later.";
+                document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Error loading books. Please try again later.</td></tr>";
             }
         }
 
         function displayBooks(books) {
-            const booksList = document.getElementById('booksList');
-            booksList.innerHTML = '';
+            const booksList = document.getElementById('booksTableBody');
+            booksList.innerHTML = '';  
+        
             books.forEach(book => {
-                const bookItem = document.createElement('div');
-                bookItem.innerHTML = `<h3>${book.BookTitle}</h3><p>Author: ${book.Author}</p>`;
-                booksList.appendChild(bookItem);
+                const bookRow = document.createElement('tr');
+                bookRow.setAttribute('data-book-id', book.id);  
+                bookRow.innerHTML = `
+                    <td>${book.id}</td>
+                    <td>${book.bookTitle}</td>
+                    <td>${book.isbn}</td>
+                    <td>${book.description}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.author}</td>
+                    <td>${book.amount}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editBook(${book.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
+                    </td>
+                `;
+        
+                booksList.appendChild(bookRow); 
             });
         }
-        // function displayBooks(books) {
-        //     const booksList = document.getElementById('booksList');
-        //     // Преобразуем объект books в строку JSON и отображаем
-        //     booksList.innerHTML = `<pre>${JSON.stringify(books, null, 2)}</pre>`;
-        // }
         loadBooks();
     </script>
 </body>

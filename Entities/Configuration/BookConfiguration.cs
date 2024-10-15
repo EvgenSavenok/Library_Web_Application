@@ -18,6 +18,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
                 Genre = BookGenre.Adventures,
                 Description = "AAAAA",
                 Author = "Vlados",
+                Amount = 1
                 // ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc),
                 // ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc)
             },
@@ -29,6 +30,7 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
                 Genre = BookGenre.Adventures,
                 Description = "AAAAA",
                 Author = "Vlados",
+                Amount = 1
             }
         );
     }

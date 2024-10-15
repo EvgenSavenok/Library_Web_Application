@@ -1,12 +1,20 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\books_table_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\books_table_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\login_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\login_page_styles.css"
     },
     {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\register_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\register_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\HTML\\AllBooksPage.html",
+      "PackagePath": "staticwebassets\\HTML\\AllBooksPage.html"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssets.props",
