@@ -7,67 +7,70 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="@Url.Content("~/CSS/login_page_styles.css")" />
+    <link rel="stylesheet" href="~/CSS/login_page_styles.css" />
 </head>
 <body>
-<div asp-action="DisplayLoginPage" method="post">
-    <h2>Login</h2>
-    <form id="loginForm">
-        <label for="UserName">Username:</label>
-        <input type="text" id="UserName" required />
+    <div class="container"> 
+        <h2>Login</h2>
+            <form id="loginForm">
+                <label for="UserName">Username:</label>
+                <input type="text" id="UserName" required />
 
-        <label for="Password">Password:</label>
-        <input type="password" id="Password" required />
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" required />
 
-        <input type="submit" value="Login" />
-    </form>
-    <button type="submit" id="registerButton" onclick="window.location.href='/api/authentication/registerPage'">Register</button>
-</div>
+                <input type="submit" value="Login" />
+            </form>
+        <button type="button" id="registerButton" onclick="window.location.href='/api/authentication/registerPage'">Register</button>
+        <div class="response" id="response"></div> 
+    </div>
 
-<script>
-    document.getElementById('loginForm').addEventListener('submit', async function(e) {
-        e.preventDefault(); 
+    <script>
+        const responseDiv = document.getElementById('response');
+        responseDiv.style.display = "hide";
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); 
 
-        const username = document.getElementById('UserName').value;
-        const password = document.getElementById('Password').value;
+            const username = document.getElementById('UserName').value;
+            const password = document.getElementById('Password').value;
 
-        const loginData = {
-            username: username,
-            password: password
-        };
+            const loginData = {
+                username: username,
+                password: password
+            };
 
-        try {
-            const response = await fetch('/api/authentication/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(loginData)
-            });
-        
-            const result = await response.json(); 
-            const responseDiv = document.getElementById('response');
-            
-            if (response.ok) {  
-                localStorage.setItem('authToken', result.token);
-                const token = localStorage.getItem('authToken');                
-                const booksResponse = await fetch('/api/books/booksPage', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
+            try {
+                const response = await fetch('/api/authentication/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(loginData)
                 });
-                if (booksResponse.ok) {
-                    window.location.href= '/api/books/booksPage'; 
-                } else {
-                    responseDiv.innerHTML = 'Authorization failed: ' + await booksResponse.text();
+        
+                const result = await response.json(); 
+            
+                if (response.ok) {  
+                    localStorage.setItem('authToken', result.token);
+                    const token = localStorage.getItem('authToken');                
+                    const booksResponse = await fetch('/api/books/booksPage', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    if (booksResponse.ok) {
+                        window.location.href = '/api/books/booksPage'; 
+                    } else {
+                        responseDiv.innerHTML = 'Authorization failed: ' + await booksResponse.text();
+                        responseDiv.style.display = 'block'; 
+                    }
+                } else {               
+                    responseDiv.innerHTML = 'Login failed: ' + JSON.stringify(result);
                 }
-            } else {               
-                responseDiv.innerHTML = 'Login failed: ' + JSON.stringify(result);
+            } catch (error) {
+                document.getElementById('response').innerHTML = 'Error: ' + error;
             }
-        } catch (error) {
-            document.getElementById('response').innerHTML = 'Error: ' + error;
-        }
-    });
-</script>
+        });
+    </script>
 </body>
 </html>

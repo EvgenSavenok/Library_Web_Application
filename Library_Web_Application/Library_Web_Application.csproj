@@ -34,4 +34,8 @@
       <None Include="wwwroot\CSS\register_page_styles.css" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\HTML\AllBooksPage.html" />
+    </ItemGroup>
+
 </Project>

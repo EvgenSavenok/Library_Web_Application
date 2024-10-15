@@ -5,6 +5,7 @@ using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Library_Web_Application.Controllers;
 
@@ -25,10 +26,6 @@ public class BooksController : Controller
     [HttpGet("booksPage")]
     public IActionResult BooksPage()
     {
-        // _logger.LogInfo("Here is info message from our values controller.");
-        // _logger.LogDebug("Here is debug message from our values controller.");
-        // _logger.LogWarn("Here is warn message from our values controller.");
-        // _logger.LogError("Here is an error message from our values controller.");
         return View("~/Views/Books/AllBooksPage.cshtml");
     }
     
@@ -44,6 +41,42 @@ public class BooksController : Controller
     public async Task<IActionResult> GetBook(int id)
     {
         var book = await _repository.Book.GetBookAsync(id, trackChanges: false);
+        if (book == null)
+        {
+            return NotFound();
+        }
+        var bookDto = _mapper.Map<BookDto>(book);
+        return Ok(bookDto);
+    }
+    
+    [HttpGet("edit/{id}", Name = "EditBook")]
+    public async Task<IActionResult> EditBook(int id)
+    {
+        var book = await _repository.Book.GetBookAsync(id, trackChanges: false);
+        if (book == null)
+        {
+            return NotFound();
+        }
+
+        var bookDto = _mapper.Map<BookDto>(book);
+    
+        var genres = Enum.GetValues(typeof(BookGenre)).Cast<BookGenre>()
+            .Select(g => new SelectListItem
+        {
+            Text = g.ToString(),
+            Value = g.ToString(),
+            Selected = g == bookDto.Genre 
+        }).ToList();
+    
+        ViewBag.Genres = genres;  
+        return View("~/Views/Books/EditBookPage.cshtml", bookDto);
+    }
+
+    
+    [HttpGet("/ByISBN/{ISBN}", Name = "BookByIsbn")]
+    public async Task<IActionResult> GetBook(string ISBN)
+    {
+        var book = await _repository.Book.GetBookByISBNAsync(ISBN, trackChanges: false);
         if (book == null)
         {
             return NotFound();
@@ -84,12 +117,12 @@ public class BooksController : Controller
         return NoContent();
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id}", Name = "UpdateBook")]
     public async Task<IActionResult> UpdateBook(int id, [FromBody]BookForUpdateDto book)
     {
         if (book == null)
         {
-            return BadRequest("CompanyForUpdateDto object is null");
+            return BadRequest("BookForUpdateDto object is null");
         }
         var bookEntity = await _repository.Book.GetBookAsync(id, trackChanges: true);
         if (bookEntity == null)

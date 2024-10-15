@@ -2,7 +2,7 @@
 @model Entities.DataTransferObjects.UserForRegistrationDto
 
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,88 +10,110 @@
     <link rel="stylesheet" href="~/CSS/register_page_styles.css" />
 </head>
 <body>
-<div class="container">
-    <h2>Register</h2>
-    <form id="registerForm">
-        <label for="FirstName">First name:</label>
-        <input type="text" id="FirstName" required />
+    <div class="container">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <div>
+                <label for="FirstName">First name:</label>
+                <input type="text" id="FirstName" required/>
+            </div>
 
-        <label for="LastName">Last name:</label>
-        <input type="text" id="LastName" required />
-        
-        <label for="UserName">Username:</label>
-        <input type="text" id="UserName" required />
-        
-        <label for="Password">Password:</label>
-        <input type="password" id="Password" required />
-        
-        <label for="Password">Password confirmation:</label>
-        <input type="password" id="PasswordConfirmation" required />
-        
-        <label for="Email">Email:</label>
-        <input type="email" id="Email" required />
-        
-        <label for="PhoneNumber">Phone:</label>
-        <input type="text" id="PhoneNumber" required />
+            <div>
+                <label for="LastName">Last name:</label>
+                <input type="text" id="LastName" required/>
+            </div>
 
-        <label for="Roles">Choose your role:</label>
-        <select asp-for="Roles" class="form-control" id="Roles">
-            <option value="User">User</option>
-            <option value="Administrator">Administrator</option>
-        </select>
-        
-        <input type="submit" value="Register" />
-    </form>
-    <button id="loginButton" onclick="window.location.href='/api/authentication/loginPage'">Login</button>
-    <div class="response" id="response"></div>
-</div>
+            <div>
+                <label for="UserName">Username:</label>
+                <input type="text" id="UserName" required/>
+            </div>
 
-<script>
-    document.getElementById("response").style.display = "none";
-    document.getElementById('registerForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
+            <div>
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" required/>
+            </div>
 
-        const FirstName = document.getElementById('FirstName').value;
-        const LastName = document.getElementById('LastName').value;
-        const UserName = document.getElementById('UserName').value;
-        const Password = document.getElementById('Password').value;
-        const PasswordConfirmation = document.getElementById('PasswordConfirmation').value;
-        const Email = document.getElementById('Email').value;
-        const PhoneNumber = document.getElementById('PhoneNumber').value;
-        const Role = document.getElementById('Roles').value;
-        
-        if (Password !== PasswordConfirmation) {
-            document.getElementById('response').style.display = "block";
-            document.getElementById('response').innerHTML = "Passwords do not match!";
-            return; 
-        }
+            <div>
+                <label for="PasswordConfirmation">Password confirmation:</label>
+                <input type="password" id="PasswordConfirmation" required/>
+            </div>
 
-        const registerData = {
-            firstname: FirstName,
-            lastname: LastName,
-            username: UserName,
-            password: Password,
-            email: Email,
-            phonenumber: PhoneNumber,
-            role: Role
-        };
+            <div>
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" required/>
+            </div>
 
-        try {
-            const response = await fetch('/api/authentication/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(registerData)
-            });
-           
-            if (response.ok) {
-                window.location.href = "/api/authentication/loginPage";
-            } else {
-                responseDiv.innerHTML = 'Registration failed';
+            <div>
+                <label for="PhoneNumber">Phone:</label>
+                <input type="text" id="PhoneNumber" required/>
+            </div>
+
+            <div>
+                <label for="Roles">Choose your role:</label>
+                <select asp-for="Roles" id="Roles">
+                    <option value="User">User</option>
+                    <option value="Administrator">Administrator</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="submit" value="Register"/>
+            </div>
+        </form>
+
+        <button id="loginButton" onclick="window.location.href='/api/authentication/loginPage'">Login</button>
+
+        <div class="response" id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const FirstName = document.getElementById('FirstName').value;
+            const LastName = document.getElementById('LastName').value;
+            const UserName = document.getElementById('UserName').value;
+            const Password = document.getElementById('Password').value;
+            const PasswordConfirmation = document.getElementById('PasswordConfirmation').value;
+            const Email = document.getElementById('Email').value;
+            const PhoneNumber = document.getElementById('PhoneNumber').value;
+            const Role = document.getElementById('Roles').value;
+            const responseDiv = document.getElementById('response');
+
+            if (Password !== PasswordConfirmation) {
+                responseDiv.style.display = "block";
+                responseDiv.innerHTML = "Passwords do not match!";
+                return;
             }
-        } catch (error) {
-            document.getElementById('response').innerHTML = 'Error: ' + error;
-        }
-    });
-</script>
+
+            const registerData = {
+                firstname: FirstName,
+                lastname: LastName,
+                username: UserName,
+                password: Password,
+                email: Email,
+                phonenumber: PhoneNumber,
+                role: Role
+            };
+
+            try {
+                const response = await fetch('/api/authentication/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(registerData)
+                });
+
+                if (response.ok) {
+                    window.location.href = "/api/authentication/loginPage";
+                } else {
+                    responseDiv.style.display = "block";
+                    responseDiv.innerHTML = 'Registration failed';
+                }
+            } catch (error) {
+                responseDiv.style.display = "block";
+                responseDiv.innerHTML = 'Error: ' + error;
+            }
+        });
+    </script>
 </body>
 </html>

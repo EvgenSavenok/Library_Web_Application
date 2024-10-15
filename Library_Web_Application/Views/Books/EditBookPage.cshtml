@@ -1,0 +1,87 @@
+﻿@model Entities.DataTransferObjects.BookDto
+
+<h2>Edit Book</h2>
+
+<link rel="stylesheet" type="text/css" href="~/CSS/edit_book_page_styles.css" />
+<form id="editBookForm">
+    <div>
+        <label>Book Title</label>
+        <input type="text" name="BookTitle" value="@Model.BookTitle" placeholder="Book Title" />
+    </div>
+
+    <div>
+        <label>ISBN</label>
+        <input type="text" name="ISBN" value="@Model.ISBN" placeholder="ISBN" />
+    </div>
+
+    <div>
+        <label>Author</label>
+        <input type="text" name="Author" value="@Model.Author" placeholder="Author" />
+    </div>
+
+    <div>
+        <label>Genre</label>
+        <select name="Genre">
+            @foreach (var genre in ViewBag.Genres)  
+            {
+                <option value="@genre.Value" @(genre.Selected ? "selected" : "")>
+                    @genre.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Description</label>
+        <input type="text" name="Description" value="@Model.Description" placeholder="Description" />
+    </div>
+
+    <div>
+        <label>Amount</label>
+        <input type="text" name="Amount" value="@Model.Amount" placeholder="Amount" />
+    </div>
+
+    <button type="button" onclick="submitForm()">Save</button>
+</form>
+
+<script>
+    async function submitForm() {
+        const form = document.getElementById('editBookForm');
+        
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());  
+
+        const bookId = @Model.Id;  
+        const token = localStorage.getItem('authToken');  //?????
+
+        try {
+            const response = await fetch(`/api/books/${bookId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`  
+                },
+                body: JSON.stringify(data)  
+            });
+            
+            if (response.ok) {
+                const booksResponse = await fetch('/api/books/booksPage', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (booksResponse.ok)
+                    window.location.href = '/api/books/booksPage'; 
+                else {
+                    alert("Failed to load list of books");
+                }
+            } else {
+                alert("Failed to update the book. Please try again.");
+            }
+        } catch (error) {
+            alert("An error occurred. Please try again later.");
+        }
+    }
+</script>

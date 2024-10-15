@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/CSS/books_table_styles.css">
 </head>
 <body>
+    <button class="btn btn-primary" onclick="addBook()">Add book</button>
     <table id="booksTable">
         <thead>
             <tr>
@@ -40,8 +41,7 @@
                 });
                 if (response.ok) {
                     const books = await response.json();
-                    console.log(books); 
-                    displayBooks(books);
+                    displayBooks(books, token);
                 } else {
                     document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Failed to load books. Please login again.</td></tr>";
                 }
@@ -50,7 +50,7 @@
             }
         }
 
-        function displayBooks(books) {
+        function displayBooks(books, token) {
             const booksList = document.getElementById('booksTableBody');
             booksList.innerHTML = '';  
         
@@ -66,13 +66,46 @@
                     <td>${book.author}</td>
                     <td>${book.amount}</td>
                     <td>
-                        <button class="btn btn-primary" onclick="editBook(${book.id})">Edit</button>
-                        <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
+                        <button class="btn btn-primary" onclick="editBook(${book.id}, '${token}')">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteBook(${book.id}, '${token}')">Delete</button>
                     </td>
                 `;
         
                 booksList.appendChild(bookRow); 
             });
+        }
+            
+        async function editBook(bookId, token) {
+            // const updatedBookData = {    
+            //         id: "Updated id",
+            //         bookTitle: "Updated Title",                    
+            //         description: "Updated description",
+            //         isbn: "Updated isbn",
+            //         genre: "Updated genre",
+            //         author: "Updated author",
+            //         amount: "Updated number of copies",                  
+            //     };
+            // try {
+            // const response = await fetch(`/api/books/${bookId}`, { 
+            //     method: 'PUT',
+            //     headers: {
+            //         'Authorization': `Bearer ${token}`, 
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(updatedBookData)
+            // });
+            // if (response.ok) {
+            //     const books = await response.json();
+            //     console.log(books); 
+            //     displayBooks(books);
+            // } else {
+            //     document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Failed to load books. Please login again.</td></tr>";
+            // }
+            // } catch (error) {
+            //     document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Error loading books. Please try again later.</td></tr>";
+            // } 
+            console.log("Redirection");
+            window.location.href = `/api/books/edit/${bookId}`;
         }
         loadBooks();
     </script>
