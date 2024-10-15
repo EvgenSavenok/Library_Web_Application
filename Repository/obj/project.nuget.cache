@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jfMpKak8S4SMMwCtx5HvnFPIuxvJVnp9tKVbvHK3MdY5ILNU4R34aXSlx08whtz/9vgb5LN44TScWdH/AUz08g==",
+  "dgSpecHash": "Frm6FJBRoxa1LZZmCMFaNqEpRW+fZWZiggVFSPvHg2QqFewPFUBsKq1GPMmKhAR1drw94EmGVu5TyHVUPJnUSA==",
   "success": true,
   "projectFilePath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,8 @@
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.identitymodel.protocols\\7.1.2\\microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\7.1.2\\microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog.extensions.logging\\5.3.14\\nlog.extensions.logging.5.3.14.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql\\8.0.4\\npgsql.8.0.4.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.8\\npgsql.entityframeworkcore.postgresql.8.0.8.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.1.2\\system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"

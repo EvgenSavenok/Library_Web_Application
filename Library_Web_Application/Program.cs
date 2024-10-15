@@ -2,12 +2,14 @@ using System.Text.Json.Serialization;
 using Contracts;
 using Library_Web_Application.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureCors();
 builder.Services.ConfigureIISIntegration();
+builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.AddAutoMapper(typeof(Program));
@@ -16,6 +18,10 @@ builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 builder.Services.ConfigureSwagger();
+
+string dir = Directory.GetCurrentDirectory();
+LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/Logs/nlog.config"));
+
 builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
 builder.Services.AddRazorPages();
@@ -27,7 +33,10 @@ builder.Services.AddControllersWithViews().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+app.UseStaticFiles();
+var logger = app.Services.GetRequiredService<ILoggerManager>();
 
 //if (app.Environment.IsDevelopment())
 //{
@@ -45,8 +54,9 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.ConfigureExceptionHandler();
+app.ConfigureExceptionHandler(logger);
 
 app.MapControllers();
 app.MapRazorPages();
+
 app.Run();

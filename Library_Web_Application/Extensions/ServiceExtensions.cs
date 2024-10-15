@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Contracts;
 using Entities;
+using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -105,4 +106,7 @@ public static class ServiceExtensions
         });
         });
     }
+    
+    public static void ConfigureLoggerService(this IServiceCollection services) =>
+        services.AddSingleton<ILoggerManager, LoggerManager>();
 }

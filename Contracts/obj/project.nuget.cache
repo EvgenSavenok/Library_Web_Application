@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GHvgMYC2tK8xfiDa8QdGZV/4TPWhtJao77HldZNMDTkyl2VYpMG0xBpMDhvNB7nZRP/rVrnFilFCzA24/xHclw==",
+  "dgSpecHash": "vIENN10tYmN/hq5PUeR7rE1MupXzkK9gNda2DmgVToE98q4/zKblnhw0mMQEvXCmMJQVcjaZAAJBt9YRBNSlkQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Contracts\\Contracts.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,8 @@
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog.extensions.logging\\5.3.14\\nlog.extensions.logging.5.3.14.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql\\8.0.4\\npgsql.8.0.4.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.8\\npgsql.entityframeworkcore.postgresql.8.0.8.nupkg.sha512"
   ],

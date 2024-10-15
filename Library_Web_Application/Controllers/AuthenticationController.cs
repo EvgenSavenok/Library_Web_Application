@@ -14,11 +14,14 @@ public class AuthenticationController : Controller
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IAuthenticationManager _authManager;
-    public AuthenticationController (IMapper mapper, UserManager<User> userManager, IAuthenticationManager authManager)
+    private ILoggerManager _logger;
+    public AuthenticationController (IMapper mapper, UserManager<User> userManager, IAuthenticationManager authManager,
+        ILoggerManager logger)
     {
         _mapper = mapper;
         _userManager = userManager;
         _authManager = authManager;
+        _logger = logger;
     }
 
     [HttpGet("registerPage")]

@@ -14,19 +14,25 @@ public class BooksController : Controller
 {
     private readonly IRepositoryManager _repository;
     private readonly IMapper _mapper;
-    public BooksController(IRepositoryManager repository, IMapper mapper)
+    private ILoggerManager _logger;
+    public BooksController(IRepositoryManager repository, IMapper mapper, ILoggerManager logger)
     {
         _repository = repository;
         _mapper = mapper;
+        _logger = logger;
     }
     
-    [HttpGet("booksPage"), Authorize(Roles = "Administrator")]
+    [HttpGet("booksPage")]
     public IActionResult BooksPage()
     {
+        // _logger.LogInfo("Here is info message from our values controller.");
+        // _logger.LogDebug("Here is debug message from our values controller.");
+        // _logger.LogWarn("Here is warn message from our values controller.");
+        // _logger.LogError("Here is an error message from our values controller.");
         return View("~/Views/Books/AllBooksPage.cshtml");
     }
     
-    [HttpGet(Name = "GetBooks"), Authorize]
+    [HttpGet("GetBooks"), Authorize(Roles = "Administrator")]
     public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
     {
         var books = await _repository.Book.GetAllBooksAsync(requestParameters, trackChanges: false);

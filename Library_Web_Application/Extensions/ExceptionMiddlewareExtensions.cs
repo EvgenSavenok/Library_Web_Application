@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Contracts;
 using Entities.ErrorModel;
 using Microsoft.AspNetCore.Diagnostics;
 
@@ -6,7 +7,7 @@ namespace Library_Web_Application.Extensions;
 
 public static class ExceptionMiddlewareExtensions
 {
-    public static void ConfigureExceptionHandler(this IApplicationBuilder app)
+    public static void ConfigureExceptionHandler(this IApplicationBuilder app, ILoggerManager logger)
     {
         app.UseExceptionHandler(appError =>
         {
@@ -17,6 +18,7 @@ public static class ExceptionMiddlewareExtensions
                 var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
                 if (contextFeature != null)
                 {
+                    logger.LogError($"Something went wrong: {contextFeature.Error}");
                     await context.Response.WriteAsync(new ErrorDetails()
                     {
                         StatusCode = context.Response.StatusCode,

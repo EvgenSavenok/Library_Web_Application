@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="~/Views/Auth/login_page_styles.css" />
+    <link rel="stylesheet" href="@Url.Content("~/CSS/login_page_styles.css")" />
 </head>
 <body>
 <div asp-action="DisplayLoginPage" method="post">
@@ -21,7 +21,7 @@
 
         <input type="submit" value="Login" />
     </form>
-    <button id="registerButton" onclick="window.location.href='/api/authentication/registerPage'">Register</button>
+    <button type="submit" id="registerButton" onclick="window.location.href='/api/authentication/registerPage'">Register</button>
     <div class="response" id="response"></div>
 </div>
 
@@ -57,9 +57,8 @@
                         'Content-Type': 'application/json'
                     }
                 });
-        
                 if (booksResponse.ok) {
-                    document.documentElement.innerHTML = await booksResponse.text(); 
+                    window.location.href= '/api/books/booksPage'; 
                 } else {
                     responseDiv.innerHTML = 'Authorization failed: ' + await booksResponse.text();
                 }

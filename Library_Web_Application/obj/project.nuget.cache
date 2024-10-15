@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FNowLj9nEGtJ3yl2Axf6Sf0TaRtPuAQh6hiRekvdpfT28yLUGoHaNK18LsXCxpludtiKnMFZWi0jb70sVZ8Pcw==",
+  "dgSpecHash": "YfMBn0kRkrnM3iHRYesAx1RQpBICB1EGZcq9Ec4T0thDHo0p7qYgHSvBySFli8738q0vvkuDJIizo/EFtgDjPw==",
   "success": true,
   "projectFilePath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\Library_Web_Application.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,9 @@
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog.extensions.logging\\5.3.14\\nlog.extensions.logging.5.3.14.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\nlog.schema\\5.3.4\\nlog.schema.5.3.4.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql\\8.0.4\\npgsql.8.0.4.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.8\\npgsql.entityframeworkcore.postgresql.8.0.8.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
