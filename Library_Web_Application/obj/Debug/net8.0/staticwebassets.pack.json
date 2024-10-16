@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\CSS\\login_page_styles.css"
     },
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\pagination_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\pagination_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\register_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\register_page_styles.css"
     },

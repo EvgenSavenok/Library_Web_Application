@@ -6,6 +6,7 @@
     <title>Books Page</title>
     <link rel="stylesheet" href="~/CSS/books_table_styles.css">
     <link rel="stylesheet" href="~/CSS/delete_book_window_styles.css">
+    <link rel="stylesheet" href="~/CSS/pagination_styles.css">
 </head>
 <body>
     <button class="btn btn-primary" onclick="addBook()">Add book</button>
@@ -25,6 +26,8 @@
     <tbody id="booksTableBody"></tbody>
 </table>
 
+<div id="pagination" class="pagination"></div>
+
 <div id="deleteModal" class="modal" style="display: none;">
      <div class="modal-content">
          <span class="close" onclick="closeModal()">&times;</span>
@@ -36,15 +39,17 @@
  </div>
 
 <script>
+        let currentPage = 1;
+        const pageSize = 10;
         let bookIdToDelete = null;
-        async function loadBooks() {
+        async function loadBooks(pageNumber = 1) {
             const token = localStorage.getItem('authToken');
             if (!token) {
                 window.location.href = "/api/authentication/loginPage";
                 return;
             }
             try {
-                const response = await fetch('/api/books/GetBooks', { 
+                const response = await fetch(`/api/books/GetBooks?pageNumber=${pageNumber}&pageSize=${pageSize}`, { 
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`, 
@@ -52,8 +57,9 @@
                     }
                 });
                 if (response.ok) {
-                    const books = await response.json();
-                    displayBooks(books, token);
+                    const result = await response.json();
+                    displayBooks(result.books, token);
+                    displayPagination(result.currentPage, result.totalPages);
                 } else {
                     document.getElementById('booksTableBody').innerHTML = "<tr><td colspan='7'>Failed to load books. Please login again.</td></tr>";
                 }
@@ -81,10 +87,26 @@
                         <button class="btn btn-primary" onclick="editBook(${book.id})">Edit</button>
                         <button class="btn btn-danger" onclick="deleteBook(${book.id})">Delete</button>
                     </td>
-                `;
-        
+                `;     
                 booksList.appendChild(bookRow); 
             });
+        }
+        
+        function displayPagination(currentPage, totalPages) {
+            const paginationContainer = document.getElementById('pagination');
+            paginationContainer.innerHTML = '';  
+    
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.classList.add('pagination-btn');
+                pageButton.innerText = i;
+                pageButton.onclick = () => loadBooks(i);  
+                
+                if (i === currentPage) {
+                    pageButton.classList.add('active');  
+                }      
+                paginationContainer.appendChild(pageButton);
+            }
         }
         
         function closeModal() {

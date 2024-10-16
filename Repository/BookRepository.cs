@@ -26,6 +26,8 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     public async Task<Book> GetBookByISBNAsync(string ISBN, bool trackChanges) =>
         await FindByCondition(c => c.ISBN.Equals(ISBN), trackChanges).SingleOrDefaultAsync();
     public void CreateBook(Book book) => Create(book);
+    public async Task<int> CountBooksAsync() =>
+        await FindByCondition(b => true, trackChanges: false).CountAsync();
 
     public void DeleteBook(Book book)
     {
