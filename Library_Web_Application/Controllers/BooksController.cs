@@ -84,8 +84,24 @@ public class BooksController : Controller
         var bookDto = _mapper.Map<BookDto>(book);
         return Ok(bookDto);
     }
+
+    [HttpGet("AddBook")]
+    public async Task<IActionResult> CreateBook()
+    {
+        var genres = Enum.GetValues(typeof(BookGenre)).Cast<BookGenre>()
+            .Select(g => new SelectListItem
+            {
+                Text = g.ToString(),
+                Value = g.ToString(),
+                Selected = g == BookGenre.Adventures 
+            }).ToList();
+
+        ViewBag.Genres = genres; 
+        return View("~/Views/Books/AddBookPage.cshtml");
+
+    }
     
-    [HttpPost]
+    [HttpPost("add")]
     public async Task<IActionResult> CreateBook([FromBody]BookForCreationDto book)
     {
         if(book == null)

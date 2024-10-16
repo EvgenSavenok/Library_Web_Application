@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\add_book_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\add_book_page_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\books_table_styles.css",
       "PackagePath": "staticwebassets\\CSS\\books_table_styles.css"
     },

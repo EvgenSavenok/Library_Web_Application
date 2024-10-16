@@ -25,7 +25,6 @@
     <tbody id="booksTableBody"></tbody>
 </table>
 
-<!-- Modal window for deleting -->
 <div id="deleteModal" class="modal" style="display: none;">
      <div class="modal-content">
          <span class="close" onclick="closeModal()">&times;</span>
@@ -126,6 +125,9 @@
             }
         });
         
+        async function addBook() {
+            window.location.href = `/api/books/AddBook`;       
+        }
         loadBooks();
     </script>
 </body>
