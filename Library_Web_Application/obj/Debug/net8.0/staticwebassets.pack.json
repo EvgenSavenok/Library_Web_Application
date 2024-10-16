@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\CSS\\books_table_styles.css"
     },
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\delete_book_window_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\delete_book_window_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\edit_book_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\edit_book_page_styles.css"
     },

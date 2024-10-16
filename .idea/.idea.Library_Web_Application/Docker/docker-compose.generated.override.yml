@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  library_web_application:
+    build:
+      context: "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application"
+      dockerfile: "Library_Web_Application/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Library_Web_Application.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/Library_Web_Application.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "library_web_application:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\eugen\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application:/app:rw"
+    - "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application:/src:rw"
+    working_dir: "/app"

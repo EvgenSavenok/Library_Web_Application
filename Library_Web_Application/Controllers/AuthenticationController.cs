@@ -60,6 +60,7 @@ public class AuthenticationController : Controller
     [HttpPost("login")]
     public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
     {
+        _logger.LogInfo("Auth is ok");
         if (!await _authManager.ValidateUser(user))
         {
             return Unauthorized();

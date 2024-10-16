@@ -73,7 +73,7 @@ public class BooksController : Controller
     }
 
     
-    [HttpGet("/ByISBN/{ISBN}", Name = "BookByIsbn")]
+    [HttpGet("ByISBN/{ISBN}", Name = "BookByIsbn")]
     public async Task<IActionResult> GetBook(string ISBN)
     {
         var book = await _repository.Book.GetBookByISBNAsync(ISBN, trackChanges: false);
@@ -104,7 +104,7 @@ public class BooksController : Controller
             bookToReturn);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         var book = await _repository.Book.GetBookAsync(id, trackChanges: false);

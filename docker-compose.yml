@@ -1,0 +1,20 @@
+﻿services:
+  library_web_application:
+    image: library_web_application
+    container_name: Library_Web_Application
+    build:
+      context: .
+      dockerfile: Library_Web_Application/Dockerfile
+    ports:
+      - "5100:5100"
+  library.database:
+    image: postgres:latest
+    container_name: library.database
+    environment:
+      - POSTGRES_DB=LibraryDb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1111
+    volumes:
+      - ./.containers/library-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5001

@@ -33,8 +33,10 @@ builder.Services.AddControllersWithViews().AddJsonOptions(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 var app = builder.Build();
+
+app.Urls.Add("http://*:5100"); 
+
 app.UseStaticFiles();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 
