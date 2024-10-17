@@ -6,6 +6,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Library_Web_Application.Controllers;
 
@@ -29,7 +30,7 @@ public class BooksController : Controller
         return View("~/Views/Books/AllBooksPage.cshtml");
     }
     
-    [HttpGet("GetBooks"), Authorize(Roles = "Administrator")]
+    [HttpGet("GetBooks")]
     public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
     {
         var books = await _repository.Book.GetAllBooksAsync(requestParameters, trackChanges: false);
@@ -56,6 +57,30 @@ public class BooksController : Controller
             return NotFound();
         }
         var bookDto = _mapper.Map<BookDto>(book);
+        var genres = Enum.GetValues(typeof(BookGenre)).Cast<BookGenre>()
+            .Select(g => new SelectListItem
+            {
+                Text = g.ToString(),
+                Value = g.ToString(),
+                Selected = g == bookDto.Genre 
+            }).ToList();
+        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authorSelectList = authors.Select(a => new SelectListItem
+        {
+            Text = $"{a.Name} {a.LastName}",
+            Value = Newtonsoft.Json.JsonConvert.SerializeObject(new 
+            {
+                a.Id,
+                a.Name,
+                a.LastName,
+                a.BirthDate,
+                a.Country
+            }),  
+            Selected = a.Id == bookDto.AuthorId 
+        }).ToList();
+        
+        ViewBag.Genres = genres;  
+        ViewBag.Authors = authorSelectList;
         return Ok(bookDto);
     }
     
@@ -77,8 +102,16 @@ public class BooksController : Controller
             Value = g.ToString(),
             Selected = g == bookDto.Genre 
         }).ToList();
-    
+        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authorSelectList = authors.Select(a => new SelectListItem
+        {
+            Text = $"{a.Name} {a.LastName}",
+            Value = $"{a.Name} {a.LastName}",  
+            Selected = a.Id == bookDto.AuthorId 
+        }).ToList();
+        
         ViewBag.Genres = genres;  
+        ViewBag.Authors = authorSelectList;
         return View("~/Views/Books/EditBookPage.cshtml", bookDto);
     }
 
@@ -144,18 +177,12 @@ public class BooksController : Controller
     }
 
     [HttpPut("{id}", Name = "UpdateBook")]
-    public async Task<IActionResult> UpdateBook(int id, [FromBody]BookForUpdateDto book)
+    public async Task<IActionResult> UpdateBook(int id, [FromBody] BookForUpdateDto bookDto)
     {
-        if (book == null)
-        {
-            return BadRequest("BookForUpdateDto object is null");
-        }
         var bookEntity = await _repository.Book.GetBookAsync(id, trackChanges: true);
-        if (bookEntity == null)
-        {
-            return NotFound();
-        }
-        _mapper.Map(book, bookEntity);
+        var authorEntity = await _repository.Author.GetAuthorAsync(bookEntity.AuthorId, trackChanges: false);
+        bookEntity.Author = authorEntity;
+        _mapper.Map(bookDto, bookEntity);
         await _repository.SaveAsync();
         return NoContent();
     }

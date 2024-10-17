@@ -19,7 +19,6 @@ builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 builder.Services.ConfigureSwagger();
 
-string dir = Directory.GetCurrentDirectory();
 LogManager.Setup().LoadConfigurationFromFile(string.Concat(Directory.GetCurrentDirectory(), "/Logs/nlog.config"));
 
 builder.Services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);

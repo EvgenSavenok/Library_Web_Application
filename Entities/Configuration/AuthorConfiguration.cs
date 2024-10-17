@@ -13,11 +13,19 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
             new Author
             {
                 Id = 1,
-                Name = "Vlados",
-                LastName = "Arefin",
+                Name = "Alex",
+                LastName = "Sanchos",
                 BirthDate = "15 May",
                 Country = "Belarus"
-            }
-        );
+            },
+            new Author
+                {
+                    Id = 2,
+                    Name = "Eugen",
+                    LastName = "Savenok",
+                    BirthDate = "15 May",
+                    Country = "Belarus"
+                }
+            );
     }
 }

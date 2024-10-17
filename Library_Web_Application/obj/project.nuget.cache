@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YfMBn0kRkrnM3iHRYesAx1RQpBICB1EGZcq9Ec4T0thDHo0p7qYgHSvBySFli8738q0vvkuDJIizo/EFtgDjPw==",
+  "dgSpecHash": "2QRWtVDijSGMru90hcgRFc1emt4ENhjpsbaFPgj7TvQMWh5tV0tA97OzPb9ObPqIQYvNRUrU+tgqRnpYd259rw==",
   "success": true,
   "projectFilePath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\Library_Web_Application.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.1.2\\microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\eugen\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\nlog\\5.3.4\\nlog.5.3.4.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\nlog.extensions.logging\\5.3.14\\nlog.extensions.logging.5.3.14.nupkg.sha512",
     "C:\\Users\\eugen\\.nuget\\packages\\nlog.schema\\5.3.4\\nlog.schema.5.3.4.nupkg.sha512",

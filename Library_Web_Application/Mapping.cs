@@ -9,7 +9,8 @@ public class Mapping : Profile
 {
     public Mapping()
     {
-        CreateMap<Book, BookDto>();
+        CreateMap<Book, BookDto>().ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
+            .ForMember(dest => dest.AuthorLastName, opt => opt.MapFrom(src => src.Author.LastName));
         CreateMap<UserForRegistrationDto, User>();
         CreateMap<BookForCreationDto, Book>();
         CreateMap<BookForUpdateDto, Book>();

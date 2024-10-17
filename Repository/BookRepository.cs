@@ -15,6 +15,7 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     public async Task<IEnumerable<Book>> GetAllBooksAsync(BookParameters bookParameters, bool trackChanges) =>
         await FindByCondition(b => true, trackChanges)  
             .OrderBy(b => b.Id) 
+            .Include(b => b.Author) 
             .Skip((bookParameters.PageNumber - 1) * bookParameters.PageSize)  
             .Take(bookParameters.PageSize)  
             .ToListAsync();

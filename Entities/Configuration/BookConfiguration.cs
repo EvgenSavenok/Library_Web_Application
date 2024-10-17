@@ -12,25 +12,23 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
         (
             new Book
             {
-                Id = 1,
-                BookTitle = "IT_Solutions Ltd",
-                ISBN = "00000000",
-                Genre = BookGenre.Adventures,
-                Description = "AAAAA",
-                Author = "Vlados",
-                Amount = 1
-                // ReceiptTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc),
-                // ReturnTime = new DateTime(2023, 12, 31, 23, 59, 59, DateTimeKind.Utc)
+                Id = 1,  
+                ISBN = "978-3-16-148410-0",
+                BookTitle = "The Great Adventure",
+                Genre = BookGenre.Adventures, 
+                Description = "An exciting journey through the wilderness.",
+                AuthorId = 1, 
+                Amount = 10,
             },
             new Book
             {
                 Id = 2,
-                BookTitle = "IT_Solutions Ltd",
-                ISBN = "00000000",
-                Genre = BookGenre.Adventures,
-                Description = "AAAAA",
-                Author = "Vlados",
-                Amount = 1
+                ISBN = "978-3-16-148411-7",
+                BookTitle = "Love in Times of War",
+                Genre = BookGenre.LoveStories,
+                Description = "A touching story of love amidst the chaos of war.",
+                AuthorId = 1, 
+                Amount = 5
             }
         );
     }
