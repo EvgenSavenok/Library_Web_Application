@@ -31,4 +31,10 @@ public class AuthorsController : Controller
 
         return Ok(response);
     }
+
+    [HttpGet("AddAuthor")]
+    public IActionResult AddAuthor()
+    {
+        return View("~/Views/Authors/AddAuthorPage.cshtml");
+    }
 }

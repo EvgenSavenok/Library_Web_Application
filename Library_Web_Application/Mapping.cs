@@ -14,6 +14,7 @@ public class Mapping : Profile
         CreateMap<UserForRegistrationDto, User>();
         CreateMap<BookForCreationDto, Book>();
         CreateMap<BookForUpdateDto, Book>();
+        CreateMap<Author, AuthorDto>();
     }
 }
 

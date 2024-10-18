@@ -1,0 +1,52 @@
+﻿@model Entities.DataTransferObjects.AuthorDto
+
+<h2>Add Book</h2>
+
+<link rel="stylesheet" type="text/css" href="" />
+<form id="addBookForm">
+    <div>
+        <label>Book Title</label>
+        <input type="text" name="BookTitle" placeholder="Book Title" />
+    </div>
+
+    <div>
+        <label>ISBN</label>
+        <input type="text" name="ISBN" placeholder="ISBN" />
+    </div>
+
+    <div>
+        <label>Author</label>
+        <select name="AuthorId">
+            @foreach (var author in ViewBag.Authors)
+            {
+                <option value="@author.Value" @(author.Selected ? "selected" : "")>
+                    @author.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Genre</label>
+        <select name="Genre">
+            @foreach (var genre in ViewBag.Genres)  
+            {
+                <option value="@genre.Value" @(genre.Selected ? "selected" : "")>
+                    @genre.Text  
+                </option>
+            }
+        </select>
+    </div>
+
+    <div>
+        <label>Description</label>
+        <input type="text" name="Description" placeholder="Description" />
+    </div>
+
+    <div>
+        <label>Amount</label>
+        <input type="text" name="Amount" placeholder="Amount" />
+    </div>
+
+    <button type="button" onclick="submitForm()">Add</button>
+</form>

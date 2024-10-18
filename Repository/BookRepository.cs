@@ -12,14 +12,18 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
         
     }
-    public async Task<IEnumerable<Book>> GetAllBooksAsync(BookParameters bookParameters, bool trackChanges) =>
-        await FindByCondition(b => true, trackChanges)  
-            .OrderBy(b => b.Id) 
-            .Include(b => b.Author) 
-            .Skip((bookParameters.PageNumber - 1) * bookParameters.PageSize)  
-            .Take(bookParameters.PageSize)  
-            .ToListAsync();
 
+    public async Task<IEnumerable<Book>> GetAllBooksAsync(BookParameters bookParameters, bool trackChanges)
+    {
+        var books = await FindByCondition(b => 
+                    (bookParameters.Genre == 0 || b.Genre == bookParameters.Genre) && 
+                    (bookParameters.AuthorId == 0 || b.Author.Id == bookParameters.AuthorId), 
+                trackChanges)
+            .Include(b => b.Author)  
+            .OrderBy(b => b.BookTitle) 
+            .ToListAsync();
+        return books;
+    }
     
     public async Task<Book> GetBookAsync(int bookId, bool trackChanges) =>
         await FindByCondition(c => c.Id.Equals(bookId), trackChanges).SingleOrDefaultAsync();

@@ -1,32 +1,36 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\add_book_page_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\add_book_page_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Auth\\login_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Auth\\login_page_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\books_table_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\books_table_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Auth\\register_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Auth\\register_page_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\delete_book_window_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\delete_book_window_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\authors_form_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\authors_form_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\edit_book_page_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\edit_book_page_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\add_book_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\add_book_page_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\login_page_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\login_page_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\books_table_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\books_table_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\pagination_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\pagination_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\delete_book_window_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\delete_book_window_styles.css"
     },
     {
-      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\register_page_styles.css",
-      "PackagePath": "staticwebassets\\CSS\\register_page_styles.css"
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\edit_book_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\edit_book_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\pagination_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\pagination_styles.css"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssets.props",
