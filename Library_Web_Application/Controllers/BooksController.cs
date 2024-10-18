@@ -138,10 +138,18 @@ public class BooksController : Controller
                 Value = g.ToString(),
                 Selected = g == BookGenre.Adventures 
             }).ToList();
-
+        
+        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authorSelectList = authors.Select((a, index) => new SelectListItem
+        {
+            Text = $"{a.Name} {a.LastName}",
+            Value = a.Id.ToString(),  
+            Selected = index == 0  
+        }).ToList();
+        
         ViewBag.Genres = genres; 
+        ViewBag.Authors = authorSelectList;
         return View("~/Views/Books/AddBookPage.cshtml");
-
     }
     
     [HttpPost("add")]

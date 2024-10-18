@@ -12,7 +12,5 @@ public class BookForCreationDto
     public BookGenre Genre { get; set; }
     public string Description { get; set; }
     public int AuthorId { get; set; }
-    public string AuthorName { get; set; }
-    public string AuthorLastName { get; set; }
     public int Amount { get; set; }
 }
