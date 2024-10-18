@@ -35,7 +35,7 @@ public class BooksController : Controller
     {
         var books = await _repository.Book.GetAllBooksAsync(requestParameters, trackChanges: false);
         var booksDto = _mapper.Map<IEnumerable<BookDto>>(books);
-        var totalBooks = await _repository.Book.CountBooksAsync(); 
+        var totalBooks = await _repository.Book.CountBooksAsync(requestParameters); 
         var totalPages = (int)Math.Ceiling((double)totalBooks / requestParameters.PageSize);
 
         var response = new

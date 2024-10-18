@@ -62,7 +62,7 @@
         let currentPage = 1;
         const pageSize = 10;
         let bookIdToDelete = null;
-        async function loadBooks(pageNumber = 1) {
+        async function loadBooks(pageNumber) {
             const token = localStorage.getItem('authToken');
             if (!token) {
                 window.location.href = "/api/authentication/loginPage";
@@ -217,7 +217,7 @@
             }
         }
         loadAuthors();
-        loadBooks();
+        loadBooks(1);
     </script>
 </body>
 </html>

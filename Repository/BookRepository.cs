@@ -20,7 +20,9 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
                     (bookParameters.AuthorId == 0 || b.Author.Id == bookParameters.AuthorId), 
                 trackChanges)
             .Include(b => b.Author)  
-            .OrderBy(b => b.BookTitle) 
+            .OrderBy(b => b.BookTitle)
+            .Skip((bookParameters.PageNumber - 1) * bookParameters.PageSize)
+            .Take(bookParameters.PageSize)
             .ToListAsync();
         return books;
     }
@@ -31,8 +33,18 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     public async Task<Book> GetBookByISBNAsync(string ISBN, bool trackChanges) =>
         await FindByCondition(c => c.ISBN.Equals(ISBN), trackChanges).SingleOrDefaultAsync();
     public void CreateBook(Book book) => Create(book);
-    public async Task<int> CountBooksAsync() =>
-        await FindByCondition(b => true, trackChanges: false).CountAsync();
+
+    public async Task<int> CountBooksAsync(BookParameters bookParameters)
+    {
+        var query = FindByCondition(b => true, trackChanges: false);
+        if (bookParameters.Genre != 0)
+            query = query.Where(b => b.Genre == bookParameters.Genre);
+        if (bookParameters.AuthorId != 0)
+        {
+            query = query.Where(b => b.AuthorId == bookParameters.AuthorId);
+        }
+        return await query.CountAsync();
+    }
 
     public void DeleteBook(Book book)
     {
