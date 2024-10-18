@@ -2,5 +2,5 @@
 
 public class AuthorParameters : RequestParameters
 {
-    
+    public string SearchTerm { get; set; } = null!;
 }

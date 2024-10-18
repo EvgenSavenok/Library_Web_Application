@@ -45,6 +45,7 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
         {
             query = query.Where(b => b.AuthorId == bookParameters.AuthorId);
         }
+        query = query.Search(bookParameters.SearchTerm);
         return await query.CountAsync();
     }
 

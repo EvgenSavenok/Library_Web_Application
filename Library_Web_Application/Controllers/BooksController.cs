@@ -64,7 +64,7 @@ public class BooksController : Controller
                 Value = g.ToString(),
                 Selected = g == bookDto.Genre 
             }).ToList();
-        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authors = await _repository.Author.GetAllAuthorsAsync(null, trackChanges: false);
         var authorSelectList = authors.Select(a => new SelectListItem
         {
             Text = $"{a.Name} {a.LastName}",
@@ -102,7 +102,7 @@ public class BooksController : Controller
             Value = g.ToString(),
             Selected = g == bookDto.Genre 
         }).ToList();
-        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authors = await _repository.Author.GetAllAuthorsAsync(null, trackChanges: false);
         var authorSelectList = authors.Select(a => new SelectListItem
         {
             Text = $"{a.Name} {a.LastName}",
@@ -139,7 +139,7 @@ public class BooksController : Controller
                 Selected = g == BookGenre.Adventures 
             }).ToList();
         
-        var authors = await _repository.Author.GetAllAuthorsAsync(trackChanges: false);
+        var authors = await _repository.Author.GetAllAuthorsAsync(null, trackChanges: false);
         var authorSelectList = authors.Select((a, index) => new SelectListItem
         {
             Text = $"{a.Name} {a.LastName}",

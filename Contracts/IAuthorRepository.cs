@@ -5,7 +5,7 @@ namespace Contracts;
 
 public interface IAuthorRepository
 {
-    Task<IEnumerable<Author>> GetAllAuthorsAsync(bool trackChanges);
+    Task<IEnumerable<Author>> GetAllAuthorsAsync(AuthorParameters authorParameters, bool trackChanges);
     Task<Author> GetAuthorAsync(int bookId, bool trackChanges);
-    Task<int> CountAuthorsAsync();
+    Task<int> CountAuthorsAsync(AuthorParameters authorParameters);
 }

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\CSS\\Authors\\authors_form_styles.css"
     },
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\authors_table_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\authors_table_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\add_book_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\Books\\add_book_page_styles.css"
     },
