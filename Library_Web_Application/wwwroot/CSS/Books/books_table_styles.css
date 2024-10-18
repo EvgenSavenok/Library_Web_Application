@@ -44,7 +44,7 @@ tr:hover {
 }
 
 .btn-primary {
-    background-color: #007bff; /* "Add book" and "Edit" */
+    background-color: #007bff; 
 }
 
 .btn-primary:hover {
@@ -52,7 +52,7 @@ tr:hover {
 }
 
 .btn-danger {
-    background-color: #dc3545; /* "Delete btn" */
+    background-color: #dc3545; 
 }
 
 .btn-danger:hover {

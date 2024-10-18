@@ -3,6 +3,7 @@ using Entities;
 using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
+using Repository.Extensions;
 
 namespace Repository;
 
@@ -23,6 +24,7 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
             .OrderBy(b => b.BookTitle)
             .Skip((bookParameters.PageNumber - 1) * bookParameters.PageSize)
             .Take(bookParameters.PageSize)
+            .Search(bookParameters.SearchTerm)
             .ToListAsync();
         return books;
     }

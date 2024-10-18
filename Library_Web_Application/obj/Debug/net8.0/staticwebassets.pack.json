@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\CSS\\Books\\pagination_styles.css"
     },
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\MainPage\\search_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\MainPage\\search_styles.css"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
