@@ -49,8 +49,6 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
         return await query.CountAsync();
     }
 
-    public void DeleteBook(Book book)
-    {
+    public void DeleteBook(Book book) =>
         Delete(book);
-    }
 }

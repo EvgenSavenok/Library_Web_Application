@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Library_Web_Application.Controllers;
 
@@ -48,5 +50,55 @@ public class AuthorsController : Controller
     public IActionResult AddAuthor()
     {
         return View("~/Views/Authors/AddAuthorPage.cshtml");
+    }
+    
+    [HttpPost("add")]
+    public async Task<IActionResult> CreateAuthor([FromBody]AuthorForCreationDto author)
+    {
+        if(author == null)
+        {
+            return BadRequest("AuthorForCreationDto object is null");
+        }
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
+        var authorEntity = _mapper.Map<Author>(author);
+        _repository.Author.CreateAuthor(authorEntity);
+        await _repository.SaveAsync();
+        return Ok();
+    }
+    
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> DeleteAuthor(int id)
+    {
+        var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
+        if (author == null)
+        {
+            return NotFound();
+        }
+        _repository.Author.DeleteAuthor(author);
+        await _repository.SaveAsync();
+        return NoContent();
+    }
+    [HttpGet("edit/{id}", Name = "EditAuthor")]
+    public async Task<IActionResult> EditAuthor(int id)
+    {
+        var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
+        if (author == null)
+        {
+            return NotFound();
+        }
+        var authorDto = _mapper.Map<AuthorDto>(author);
+        return View("~/Views/Authors/EditAuthorPage.cshtml", authorDto);
+    }
+    
+    [HttpPut("{id}", Name = "UpdateAuthor")]
+    public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorForUpdateDto authorDto)
+    {
+        var authorEntity = await _repository.Author.GetAuthorAsync(id, trackChanges: true);
+        _mapper.Map(authorDto, authorEntity);
+        await _repository.SaveAsync();
+        return NoContent();
     }
 }

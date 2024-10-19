@@ -166,9 +166,7 @@ public class BooksController : Controller
         var bookEntity = _mapper.Map<Book>(book);
         _repository.Book.CreateBook(bookEntity);
         await _repository.SaveAsync();
-        var bookToReturn = _mapper.Map<BookDto>(bookEntity);
-        return CreatedAtRoute("BookById", new { id = bookToReturn.Id}, 
-            bookToReturn);
+        return Ok();
     }
 
     [HttpDelete("delete/{id}")]

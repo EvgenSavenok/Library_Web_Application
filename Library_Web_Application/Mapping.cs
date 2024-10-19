@@ -11,10 +11,14 @@ public class Mapping : Profile
     {
         CreateMap<Book, BookDto>().ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.Name))
             .ForMember(dest => dest.AuthorLastName, opt => opt.MapFrom(src => src.Author.LastName));
-        CreateMap<UserForRegistrationDto, User>();
         CreateMap<BookForCreationDto, Book>();
         CreateMap<BookForUpdateDto, Book>();
+        
         CreateMap<Author, AuthorDto>();
+        CreateMap<AuthorForCreationDto, Author>();
+        CreateMap<AuthorForUpdateDto, Author>();
+        
+        CreateMap<UserForRegistrationDto, User>();
     }
 }
 

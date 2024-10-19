@@ -15,6 +15,7 @@
         <button type="button" class="btn btn-primary" onclick="applyFilters()">Search</button>
     </div>
     <button class="btn btn-author" onclick="addAuthor()">Add author</button>
+    <button class="btn btn-author" onclick="goToBooks()">Go back</button>
 
     <table id="authorsTable">
         <thead>
@@ -155,6 +156,10 @@
         
         async function addAuthor() {
             window.location.href = `/api/authors/AddAuthor`;       
+        }
+        
+        function goToBooks() {
+            window.location.href = `/api/books/booksPage`;
         }
          
         loadAuthors(1);

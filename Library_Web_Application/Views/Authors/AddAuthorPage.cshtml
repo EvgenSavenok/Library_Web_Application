@@ -2,51 +2,75 @@
 
 <h2>Add author</h2>
 
-<link rel="stylesheet" type="text/css" href="" />
+<link rel="stylesheet" type="text/css" href="~/CSS/Authors/add_author_styles.css" />
 <form id="addAuthorForm">
     <div>
-        <label>Book Title</label>
-        <input type="text" name="BookTitle" placeholder="Book Title" />
+        <label>Name</label>
+        <input type="text" name="Name" placeholder="Name" />
     </div>
 
     <div>
-        <label>ISBN</label>
-        <input type="text" name="ISBN" placeholder="ISBN" />
+        <label>Last name</label>
+        <input type="text" name="LastName" placeholder="LastName" />
     </div>
 
     <div>
-        <label>Author</label>
-        <select name="AuthorId">
-            @foreach (var author in ViewBag.Authors)
-            {
-                <option value="@author.Value" @(author.Selected ? "selected" : "")>
-                    @author.Text
-                </option>
-            }
-        </select>
+        <label>Date of birth</label>
+        <input type="text" name="BirthDate" placeholder="BirthDate" />
     </div>
 
     <div>
-        <label>Genre</label>
-        <select name="Genre">
-            @foreach (var genre in ViewBag.Genres)  
-            {
-                <option value="@genre.Value" @(genre.Selected ? "selected" : "")>
-                    @genre.Text  
-                </option>
-            }
-        </select>
-    </div>
-
-    <div>
-        <label>Description</label>
-        <input type="text" name="Description" placeholder="Description" />
-    </div>
-
-    <div>
-        <label>Amount</label>
-        <input type="text" name="Amount" placeholder="Amount" />
+        <label>Country</label>
+        <input type="text" name="Country" placeholder="Country" />
     </div>
 
     <button type="button" onclick="submitForm()">Add</button>
 </form>
+
+<script>
+    async function submitForm() {
+        const form = document.getElementById('addAuthorForm');
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const token = localStorage.getItem('authToken');
+        
+        const authorData = {
+                Name: data.Name,
+                LastName: data.LastName,
+                BirthDate: data.BirthDate, 
+                Country: data.Country
+        };
+
+        try {
+            const response = await fetch(`/api/authors/add`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+                },
+            body: JSON.stringify(authorData)
+            });
+
+            if (response.ok) {
+                const authorsResponse = await fetch('/api/authors/authorsPage', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                    }
+                });
+                if (authorsResponse.ok)
+                    window.location.href = '/api/authors/authorsPage';
+                else {
+                    alert("Failed to load list of authors");
+                }
+            } else {
+                alert("Failed to add the author. Please try again.");
+            }
+        } catch (error) {
+            alert("An error occurred. Please try again later.");
+        }
+    }
+</script>
