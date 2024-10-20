@@ -80,7 +80,7 @@
             });
 
             if (response.ok) {
-                const booksResponse = await fetch('/api/books/booksPage', {
+                const booksResponse = await fetch('/api/books/GetBooks', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -88,7 +88,7 @@
                     }
                 });
                 if (booksResponse.ok)
-                    window.location.href = '/api/books/booksPage';
+                    window.location.href = '/api/books/admin';
                 else {
                     alert("Failed to load list of books");
                 }

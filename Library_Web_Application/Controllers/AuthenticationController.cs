@@ -49,18 +49,18 @@ public class AuthenticationController : Controller
             }
             return BadRequest(ModelState);
         }
-        var rolesAsStrings = Enum.GetValues(typeof(UserForRegistrationDto.UserRole))
-            .Cast<UserForRegistrationDto.UserRole>()            
-            .Select(role => role.ToString()) 
-            .ToList(); 
-        await _userManager.AddToRolesAsync(user, rolesAsStrings);
+        // var rolesAsStrings = Enum.GetValues(typeof(UserForRegistrationDto.UserRole))
+        //     .Cast<UserForRegistrationDto.UserRole>()            
+        //     .Select(role => role.ToString()) 
+        //     .ToList(); 
+        var userRoleAsString = userForRegistration.Role.ToString();
+        await _userManager.AddToRolesAsync(user, new List<string> { userRoleAsString });
         return StatusCode(201);
     }
     
     [HttpPost("login")]
     public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
     {
-        _logger.LogInfo("Auth is ok");
         if (!await _authManager.ValidateUser(user))
         {
             return Unauthorized();

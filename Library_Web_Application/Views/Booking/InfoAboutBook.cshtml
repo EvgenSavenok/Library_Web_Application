@@ -1,0 +1,32 @@
+﻿@model dynamic
+
+<h2>Book Information</h2>
+
+<link rel="stylesheet" href="~/CSS/Booking/book_info_page_styles.css">
+<div>
+    <p><strong>Title:</strong> @Model.Book.BookTitle</p>
+    <p><strong>ISBN:</strong> @Model.Book.ISBN</p>
+    <p><strong>Genre:</strong> @Model.Book.Genre</p>
+    <p><strong>Description:</strong> @Model.Book.Description</p>
+    <p><strong>Available Copies:</strong> @Model.Book.Amount</p>
+</div>
+
+<h3>Author Information</h3>
+<div>
+    <p><strong>Author:</strong> @Model.Author.Name @Model.Author.LastName</p>
+    <p><strong>Birth Date:</strong> @Model.Author.BirthDate</p>
+    <p><strong>Country:</strong> @Model.Author.Country</p>
+</div>
+
+@if (Model.Book.Amount == 0)
+{
+    <p class="no-books-message">There are no books</p>
+}
+else
+{
+    <form method="post" action="/api/booking/take/@Model.Book.Id">
+        <button type="submit" class="btn reserve-btn">Reserve</button>
+    </form>
+}
+
+<button onclick="window.location.href='/api/booking/user'" class="btn return-btn">Go back</button>

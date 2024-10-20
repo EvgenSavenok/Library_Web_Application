@@ -49,20 +49,17 @@
                 const result = await response.json(); 
             
                 if (response.ok) {  
-                    localStorage.setItem('authToken', result.token);
-                    const token = localStorage.getItem('authToken');                
-                    const booksResponse = await fetch('/api/books/booksPage', {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                    if (booksResponse.ok) {
-                        window.location.href = '/api/books/booksPage'; 
+                    localStorage.setItem('authToken', result.token);   
+                    const token = localStorage.getItem('authToken'); 
+                    const decodedToken = parseJwt(token);
+                    const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+                    if (role === 'Administrator') {
+                        window.location.href = '/api/books/admin'; 
+                    } else if (role === 'User') {
+                        window.location.href = '/api/booking/user'; 
                     } else {
-                        responseDiv.innerHTML = 'Authorization failed: ' + await booksResponse.text();
-                        responseDiv.style.display = 'block'; 
+                        responseDiv.innerHTML = 'Role not recognized';
+                        responseDiv.style.display = 'block';
                     }
                 } else {               
                     responseDiv.innerHTML = 'Login failed: ' + JSON.stringify(result);
@@ -71,6 +68,14 @@
                 document.getElementById('response').innerHTML = 'Error: ' + error;
             }
         });
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];            
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');           
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));           
+            return JSON.parse(jsonPayload);
+        }
     </script>
 </body>
 </html>

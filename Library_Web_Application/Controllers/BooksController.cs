@@ -24,8 +24,8 @@ public class BooksController : Controller
         _logger = logger;
     }
     
-    [HttpGet("booksPage")]
-    public IActionResult BooksPage()
+    [HttpGet("admin")]
+    public IActionResult BooksPageAdmin()
     {
         return View("~/Views/Books/AllBooksPage.cshtml");
     }

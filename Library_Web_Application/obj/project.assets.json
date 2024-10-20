@@ -44,6 +44,9 @@
           }
         }
       },
+      "jwt-decode/2.2.0": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.10": {
         "type": "package",
         "dependencies": {
@@ -1340,6 +1343,20 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "jwt-decode/2.2.0": {
+      "sha512": "xpbXeWL0wXe2a8ef1zt9WFXSdp8UCCKQIdt6yjgE6xV1s/ujNCctWEIQV1S5/4SpNvjl8Ae1fITMHV9UvT3xIA==",
+      "type": "package",
+      "path": "jwt-decode/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Scripts/jwt-decode-2.2.0.js",
+        "content/Scripts/jwt-decode-2.2.0.min.js",
+        "content/Scripts/typings/jwt-decode/jwt-decode.d.ts",
+        "jwt-decode.2.2.0.nupkg.sha512",
+        "jwt-decode.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/8.0.10": {
@@ -3180,7 +3197,8 @@
       "Newtonsoft.Json >= 13.0.1",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 8.0.8",
       "Repository >= 1.0.0",
-      "Swashbuckle.AspNetCore >= 5.6.3"
+      "Swashbuckle.AspNetCore >= 5.6.3",
+      "jwt-decode >= 2.2.0"
     ]
   },
   "packageFolders": {
@@ -3258,6 +3276,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[5.6.3, )"
+          },
+          "jwt-decode": {
+            "target": "Package",
+            "version": "[2.2.0, )"
           }
         },
         "imports": [

@@ -62,3 +62,12 @@ Entities.Models.Author -> Entities.DataTransferObjects.BookDto
 2024-10-19 13:47:26.4625 INFO Auth is ok
 2024-10-19 13:49:43.4947 INFO Auth is ok
 2024-10-19 13:51:13.6348 INFO Auth is ok
+2024-10-19 13:59:08.6963 INFO Auth is ok
+2024-10-19 14:11:00.1479 INFO Auth is ok
+2024-10-19 15:17:57.1569 INFO Auth is ok
+2024-10-19 15:19:06.9412 INFO Auth is ok
+2024-10-19 15:19:25.9102 INFO Auth is ok
+2024-10-19 15:21:06.1953 INFO Auth is ok
+2024-10-19 15:22:19.3249 INFO Auth is ok
+2024-10-19 15:23:30.9915 INFO Auth is ok
+2024-10-19 15:25:50.0695 INFO Auth is ok

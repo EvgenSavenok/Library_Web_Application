@@ -38,6 +38,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3RlclBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Booking/AllBooksPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xBbGxCb29rc1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Booking/InfoAboutBook.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xJbmZvQWJvdXRCb29rLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/eugen/RiderProjects/Library_Web_Application/Library_Web_Application/Views/Books/AddBookPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va3NcQWRkQm9va1BhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
