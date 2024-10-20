@@ -21,4 +21,5 @@ public class ApplicationContext : IdentityDbContext<User>
     }
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<UserBookBorrow> UserBookBorrows { get; set; }
 }

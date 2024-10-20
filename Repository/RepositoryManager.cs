@@ -7,6 +7,7 @@ public class RepositoryManager : IRepositoryManager
 {
     private ApplicationContext _repositoryContext;
     private IAuthorRepository _authorRepository;
+    private IUserBookBorrowRepository _borrowRepository;
     private IBookRepository _bookRepository;
     public RepositoryManager(ApplicationContext repositoryContext)
     {
@@ -29,6 +30,16 @@ public class RepositoryManager : IRepositoryManager
             if(_authorRepository == null)
                 _authorRepository = new AuthorRepository(_repositoryContext);
             return _authorRepository;
+        }
+    }
+
+    public IUserBookBorrowRepository Borrow
+    {
+        get
+        {
+            if (_borrowRepository == null)
+                _borrowRepository = new UserBookBorrowRepository(_repositoryContext);
+            return _borrowRepository;
         }
     }
     

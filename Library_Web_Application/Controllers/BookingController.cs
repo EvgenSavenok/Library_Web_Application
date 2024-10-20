@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Security.Claims;
+using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
@@ -19,7 +20,7 @@ public class BookingController : Controller
         _repository = repository;
         _mapper = mapper;
     }
-    
+
     [HttpGet("user")]
     public IActionResult BooksPageUser()
     {
@@ -48,10 +49,60 @@ public class BookingController : Controller
         };
         return View("~/Views/Booking/InfoAboutBook.cshtml", bookInfo);
     }
+    
+    [HttpGet("user/reservedBooks")]
+    public async Task<IActionResult> GetUserReservedBooks()
+    {
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized();
+        }
+        var reservedBooks = await _repository.Borrow.GetAllUserBookBorrowsAsync(userId, trackChanges: false);
+        if (reservedBooks == null || !reservedBooks.Any())
+        {
+            return View("~/Views/Booking/NoReservedBooksPage.cshtml"); 
+        }
+        return View("~/Views/Booking/ReservedBooksPage.cshtml", reservedBooks); 
+    }
+
 
     [HttpPost("take/{id}")]
     public async Task<IActionResult> TakeBook(int id)
     {
-        
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
+        if (string.IsNullOrEmpty(userId))
+        {
+            return Unauthorized();
+        }
+        var book = await _repository.Book.GetBookAsync(id, trackChanges: true);
+        if (book == null)
+        {
+            return NotFound("Book not found");
+        }
+        if (book.Amount == 0)
+        {
+            return BadRequest("Book is not available");
+        }
+        var bookDto = new BookForUpdateDto
+        {
+            Amount = --book.Amount,
+            ISBN = book.ISBN,
+            BookTitle = book.BookTitle,
+            Genre = book.Genre,
+            Description = book.Description,
+            AuthorId = book.AuthorId,
+        };
+        var userBookBorrow = new UserBookBorrow
+        {
+            UserId = userId,                
+            BookId = book.Id,               
+            BorrowDate = DateTime.UtcNow,      
+            ReturnDate = DateTime.UtcNow.AddDays(30)
+        };
+        _repository.Borrow.CreateUserBookBorrow(userBookBorrow);
+        _mapper.Map(bookDto, book);
+        await _repository.SaveAsync();
+        return Ok();
     }
 }

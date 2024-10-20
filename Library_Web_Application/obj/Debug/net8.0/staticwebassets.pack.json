@@ -25,8 +25,16 @@
       "PackagePath": "staticwebassets\\CSS\\Authors\\edit_author_page_styles.css"
     },
     {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\all_reserved_books_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Booking\\all_reserved_books_page_styles.css"
+    },
+    {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\book_info_page_styles.css",
       "PackagePath": "staticwebassets\\CSS\\Booking\\book_info_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\success_reserving_form_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Booking\\success_reserving_form_styles.css"
     },
     {
       "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\add_book_page_styles.css",

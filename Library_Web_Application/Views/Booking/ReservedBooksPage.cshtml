@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Entities.Models.UserBookBorrow>
+
+<h2>Your Reserved Books</h2>
+
+<link rel="stylesheet" href="~/CSS/Booking/all_reserved_books_page_styles.css">
+
+@if (!Model.Any())
+{
+    <p>You have not reserved any books yet.</p>
+}
+else
+{
+    <div class="books-container">
+        @foreach (var bookBorrow in Model)
+        {
+            <div class="book-card">
+                <h3>@bookBorrow.Book.BookTitle</h3>
+                <p><strong>Author:</strong> @bookBorrow.Book.Author.Name @bookBorrow.Book.Author.LastName</p>
+                <p><strong>ISBN:</strong> @bookBorrow.Book.ISBN</p>
+                <p><strong>Borrowed on:</strong> @bookBorrow.BorrowDate.ToString("MMMM dd, yyyy")</p>
+                <p><strong>Return by:</strong> @bookBorrow.ReturnDate.ToString("MMMM dd, yyyy")</p>
+                <p><strong>Genre:</strong> @bookBorrow.Book.Genre</p>
+            </div>
+        }
+    </div>
+}
+
+<button onclick="window.location.href='/api/booking/user'" class="btn return-btn">Go back</button>

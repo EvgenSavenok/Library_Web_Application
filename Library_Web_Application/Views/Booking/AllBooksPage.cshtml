@@ -10,44 +10,45 @@
     <link rel="stylesheet" type="text/css" href="~/CSS/MainPage/search_styles.css" />
 </head>
 <body>
-    <form id="filterForm" class="filter-form">
-        <div>
-            <label for="genreFilter">Filter by Genre:</label>
-            <select id="genreFilter" name="genre">
-                <option value="">All Genres</option>
-                <option value="Adventures">Adventures</option>
-                <option value="LoveStories">Love Stories</option>
-                <option value="Horrors">Horrors</option>
-                <option value="FairyTales">Fairy Tales</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="authorFilter">Filter by Author:</label>
-            <select id="authorFilter" name="author">
-                <option value="">All Authors</option>
-            </select>
-        </div>
-    </form>
-
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search by title...">
-        <button type="button" class="btn btn-primary" onclick="applyFilters()">Search</button>
+<button type="button" class="btn btn-primary" onclick="showReservedBooks()">Reserved books</button>
+<form id="filterForm" class="filter-form">
+    <div>
+        <label for="genreFilter">Filter by Genre:</label>
+        <select id="genreFilter" name="genre">
+            <option value="">All Genres</option>
+            <option value="Adventures">Adventures</option>
+            <option value="LoveStories">Love Stories</option>
+            <option value="Horrors">Horrors</option>
+            <option value="FairyTales">Fairy Tales</option>
+        </select>
     </div>
 
-    <table id="booksTable">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Available Copies</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody id="booksTableBody"></tbody>
-    </table>
+    <div>
+        <label for="authorFilter">Filter by Author:</label>
+        <select id="authorFilter" name="author">
+            <option value="">All Authors</option>
+        </select>
+    </div>
+</form>
 
-    <div id="pagination" class="pagination"></div>
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by title...">
+    <button type="button" class="btn btn-primary" onclick="applyFilters()">Search</button>
+</div>
+
+<table id="booksTable">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Available Copies</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="booksTableBody"></tbody>
+</table>
+
+<div id="pagination" class="pagination"></div>
 
 <script>
         let currentPage = 1;
@@ -123,6 +124,30 @@
         
         function showBookInfo(bookId) {
             window.location.href = `/api/booking/bookInfo/${bookId}`;
+        }
+        
+        async function showReservedBooks() { 
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                window.location.href = "/api/authentication/loginPage";
+                return;
+            }
+            try {
+                const response = await fetch(`/api/booking/user/reservedBooks`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,  
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    window.location.href = `/api/booking/user/reserved-books`;  
+                } else {
+                    alert('Failed to show the books.');
+                }
+            } catch (error) {
+                alert('An error occurred while try to get the reserved books.');
+            }
         }
         
         function applyFilters() {
