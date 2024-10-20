@@ -49,9 +49,15 @@ public class BookingController : Controller
         };
         return View("~/Views/Booking/InfoAboutBook.cshtml", bookInfo);
     }
-    
+
+    [HttpGet("user/reservedBooksPage")]
+    public IActionResult GetUserReservedBooks()
+    {
+        return View("~/Views/Booking/ReservedBooksPage.cshtml");
+    }
+
     [HttpGet("user/reservedBooks")]
-    public async Task<IActionResult> GetUserReservedBooks()
+    public async Task<IActionResult> DisplayUserReservedBooks()
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (string.IsNullOrEmpty(userId))
@@ -63,7 +69,7 @@ public class BookingController : Controller
         {
             return View("~/Views/Booking/NoReservedBooksPage.cshtml"); 
         }
-        return View("~/Views/Booking/ReservedBooksPage.cshtml", reservedBooks); 
+        return Ok();
     }
 
 
