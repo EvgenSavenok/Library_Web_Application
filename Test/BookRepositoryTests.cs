@@ -47,6 +47,9 @@ namespace Test
                 result!.BookTitle.Should().Be("Test Book");
                 result.ISBN.Should().Be("123456789");
                 result.Genre.Should().Be(BookGenre.Horrors);
+                result.Description.Should().Be("Horror tale");
+                result.Amount.Should().Be(3);
+                result.AuthorId.Should().Be(1);
             }
         }
 
@@ -88,6 +91,9 @@ namespace Test
                 addedBook.Should().NotBeNull();
                 addedBook!.BookTitle.Should().Be("New Book");
                 addedBook.Genre.Should().Be(BookGenre.FairyTales);
+                addedBook.Description.Should().Be("Horror tale");
+                addedBook.Amount.Should().Be(3);
+                addedBook.AuthorId.Should().Be(1);
             }
         }
     }
