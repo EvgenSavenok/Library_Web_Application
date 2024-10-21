@@ -22,3 +22,7 @@ After that database will appear on your machine and you will can run this applic
 2) To reserve a books you need to add this books to your library via administrator role.
 3) Amount of each book's copy cannot contain symbols and all fields in any add/edit form cannot be empty.
 4) To run Unit tests you should open IDE (for example, JetBrains Rider) and run methods that you want in Test class using tools of IDE.
+
+# Questions
+1) The terms of reference say that I only need to make a book reservation, but nothing is said about implementing the return function. Is it necessary to implement this function?
+2) Is it necessary to check the validity of the phone number and other fields that are not directly related to the implementation of task functions?
