@@ -42,7 +42,6 @@ else
 <script>
     async function reserveBook(bookId) {
         const token = localStorage.getItem('authToken');  
-        
         if (!token) {
             alert('Authorization token is missing. Please login again.');
             return;

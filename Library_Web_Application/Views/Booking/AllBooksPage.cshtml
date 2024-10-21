@@ -127,13 +127,15 @@
         }
         
         async function showReservedBooks() { 
+            console.log("Start show");
             const token = localStorage.getItem('authToken');
+            console.log(token);
             if (!token) {
                 window.location.href = "/api/authentication/loginPage";
                 return;
             }
             try {
-                const response = await fetch(`/api/booking/user/reservedBooksPage`, {
+                const response = await fetch(`/api/booking/user/reservedBooks`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,  
@@ -141,7 +143,7 @@
                     }
                 });
                 if (response.ok) {
-                    window.location.href = `/api/booking/user/reserved-books`;  
+                    window.location.href = `/api/booking/user/ReservedBooksPage`;  
                 } else {
                     alert('Failed to show the books.');
                 }

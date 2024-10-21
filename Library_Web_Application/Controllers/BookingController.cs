@@ -3,6 +3,7 @@ using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -57,19 +58,29 @@ public class BookingController : Controller
     }
 
     [HttpGet("user/reservedBooks")]
-    public async Task<IActionResult> DisplayUserReservedBooks()
+    public async Task<IActionResult> DisplayUserReservedBooks([FromQuery] BorrowParameters requestParameters)
     {
         var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (string.IsNullOrEmpty(userId))
         {
             return Unauthorized();
         }
-        var reservedBooks = await _repository.Borrow.GetAllUserBookBorrowsAsync(userId, trackChanges: false);
+        var reservedBooks = await _repository.Borrow.GetAllUserBookBorrowsAsync(requestParameters, userId, trackChanges: false);
+        var totalBooks = await _repository.Borrow.CountBorrowsAsync(requestParameters); 
+        var totalPages = (int)Math.Ceiling((double)totalBooks / requestParameters.PageSize);
+
         if (reservedBooks == null || !reservedBooks.Any())
         {
             return View("~/Views/Booking/NoReservedBooksPage.cshtml"); 
         }
-        return Ok();
+        
+        var response = new
+        {
+            reservedBooks = reservedBooks,
+            currentPage = requestParameters.PageNumber,
+            totalPages
+        };
+        return Ok(response);
     }
 
 
