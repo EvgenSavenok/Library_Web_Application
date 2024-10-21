@@ -11,6 +11,7 @@ This will create Migrations folder in project Entities and add new migration fil
 dotnet ef migrations add NameOfMigration --project Entities --startup-project Library_Web_Application
 ```
 ![](./Migrations.png)
+
 This command will create database according to the last migration:
 ```bash
 dotnet ef database update --project Entities --startup-project Library_Web_Application
@@ -23,6 +24,7 @@ After that database will appear on your machine and you will can run this applic
 2) To reserve a books you need to add this books to your library via administrator role.
 3) Amount of each book's copy cannot contain symbols and all fields in any add/edit form cannot be empty.
 4) To run Unit tests you should open IDE (for example, JetBrains Rider) and run methods that you want in Test class using tools of IDE.
+5) ![](./Unit_tests.jpg)
 
 # Questions
 1) The terms of reference say that I only need to make a book reservation, but nothing is said about implementing the return function. Is it necessary to implement this function?
