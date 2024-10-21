@@ -10,6 +10,7 @@ This will create Migrations folder in project Entities and add new migration fil
 ```bash
 dotnet ef migrations add NameOfMigration --project Entities --startup-project Library_Web_Application
 ```
+![](./Migrations.png)
 This command will create database according to the last migration:
 ```bash
 dotnet ef database update --project Entities --startup-project Library_Web_Application
