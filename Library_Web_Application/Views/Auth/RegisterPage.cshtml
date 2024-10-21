@@ -106,8 +106,20 @@
                 if (response.ok) {
                     window.location.href = "/api/authentication/loginPage";
                 } else {
+                    const errorData = await response.json();
+                            
                     responseDiv.style.display = "block";
-                    responseDiv.innerHTML = 'Registration failed';
+                    responseDiv.innerHTML = ''; 
+            
+                    for (const key in errorData) {
+                        if (errorData.hasOwnProperty(key)) {
+                            errorData[key].forEach(error => {
+                                const errorElement = document.createElement('p');
+                                errorElement.textContent = `${key}: ${error}`;
+                                responseDiv.appendChild(errorElement);
+                            });
+                        }
+                    }
                 }
             } catch (error) {
                 responseDiv.style.display = "block";

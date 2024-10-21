@@ -17,6 +17,9 @@ public class Book
     [Column("BookId")]
     public int Id { get; set; }
     
+    [Required(ErrorMessage = "Book title is a required field.")]
+    [MaxLength(13, ErrorMessage = "Maximum length for the title is 13 characters.")]
+    [MinLength(10, ErrorMessage = "Minimum length for the title is 10 characters.")]
     public string ISBN { get; set; }
 
     [Required(ErrorMessage = "Book title is a required field.")]

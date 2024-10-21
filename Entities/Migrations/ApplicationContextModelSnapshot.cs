@@ -83,7 +83,8 @@ namespace Entities.Migrations
 
                     b.Property<string>("ISBN")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(13)
+                        .HasColumnType("character varying(13)");
 
                     b.HasKey("Id");
 
@@ -222,13 +223,13 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "190f2bb7-3105-4acb-b9bd-ecfecc003bf5",
+                            Id = "0b57c1be-670f-4d37-b2cf-642f7774d66f",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "efd8e49c-4b50-4726-9d95-05964385add1",
+                            Id = "ea38e369-d22b-4ab5-a118-6da5bfd081cb",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
