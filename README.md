@@ -16,7 +16,7 @@ dotnet ef database update --project Entities --startup-project Library_Web_Appli
 ```
 After that database will appear on your machine and you will can run this application through exe-file or IDE.
 
-## Description
+# Description
 
 1) You can register as administrator or user. All usernames and e-mails must be unique, password cannot contain less than 10 symbols.
 2) To reserve a books you need to add this books to your library via administrator role.
