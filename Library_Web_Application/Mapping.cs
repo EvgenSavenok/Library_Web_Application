@@ -1,6 +1,6 @@
-﻿using AutoMapper;
+﻿using Application.DataTransferObjects;
+using AutoMapper;
 using Entities;
-using Entities.DataTransferObjects;
 using Entities.Models;
 
 namespace Library_Web_Application;

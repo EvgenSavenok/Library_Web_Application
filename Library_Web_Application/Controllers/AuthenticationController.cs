@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
-using Contracts;
-using Entities;
 using Entities.DataTransferObjects;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using Application.DataTransferObjects;
+using Application.Interfaces;
+using Contracts;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Library_Web_Application.Controllers;
 
@@ -11,17 +13,11 @@ namespace Library_Web_Application.Controllers;
 [ApiController]
 public class AuthenticationController : Controller
 {
-    private readonly IMapper _mapper;
-    private readonly UserManager<User> _userManager;
-    private readonly IAuthenticationManager _authManager;
-    private ILoggerManager _logger;
-    public AuthenticationController (IMapper mapper, UserManager<User> userManager, IAuthenticationManager authManager,
-        ILoggerManager logger)
+    private readonly IAuthService _authService;
+
+    public AuthenticationController(IAuthService authService)
     {
-        _mapper = mapper;
-        _userManager = userManager;
-        _authManager = authManager;
-        _logger = logger;
+        _authService = authService;
     }
 
     [HttpGet("registerPage")]
@@ -39,8 +35,12 @@ public class AuthenticationController : Controller
     [HttpPost("register")]
     public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
     {
-        var user = _mapper.Map<User>(userForRegistration);
-        var result = await _userManager.CreateAsync(user, userForRegistration.Password);
+        if (userForRegistration == null || !ModelState.IsValid)
+        {
+            return BadRequest("Invalid registration request");
+        }
+
+        var result = await _authService.RegisterUserAsync(userForRegistration);
         if (!result.Succeeded)
         {
             foreach (var error in result.Errors)
@@ -49,18 +49,24 @@ public class AuthenticationController : Controller
             }
             return BadRequest(ModelState);
         }
-        var userRoleAsString = userForRegistration.Role.ToString();
-        await _userManager.AddToRolesAsync(user, new List<string> { userRoleAsString });
+
         return StatusCode(201);
     }
     
     [HttpPost("login")]
-    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
+    public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto userForLogin)
     {
-        if (!await _authManager.ValidateUser(user))
+        if (userForLogin == null || !ModelState.IsValid)
+        {
+            return BadRequest("Invalid login request");
+        }
+
+        var token = await _authService.AuthenticateUserAsync(userForLogin);
+        if (token == null)
         {
             return Unauthorized();
         }
-        return Ok(new { Token = await _authManager.CreateToken() });
+
+        return Ok(new { Token = token });
     }
 }

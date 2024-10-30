@@ -223,13 +223,13 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0b57c1be-670f-4d37-b2cf-642f7774d66f",
+                            Id = "6fbd33d8-57ca-470c-a972-36b70c563eeb",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ea38e369-d22b-4ab5-a118-6da5bfd081cb",
+                            Id = "26403a09-3f1c-4526-827f-e617864469bb",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

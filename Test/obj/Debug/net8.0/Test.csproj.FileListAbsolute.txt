@@ -155,3 +155,5 @@ C:\Users\eugen\RiderProjects\Library_Web_Application\Test\obj\Debug\net8.0\refin
 C:\Users\eugen\RiderProjects\Library_Web_Application\Test\obj\Debug\net8.0\Test.pdb
 C:\Users\eugen\RiderProjects\Library_Web_Application\Test\obj\Debug\net8.0\Test.genruntimeconfig.cache
 C:\Users\eugen\RiderProjects\Library_Web_Application\Test\obj\Debug\net8.0\ref\Test.dll
+C:\Users\eugen\RiderProjects\Library_Web_Application\Test\bin\Debug\net8.0\Application.dll
+C:\Users\eugen\RiderProjects\Library_Web_Application\Test\bin\Debug\net8.0\Application.pdb

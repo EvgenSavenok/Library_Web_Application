@@ -1,4 +1,4 @@
-﻿@model Entities.DataTransferObjects.BookDto
+﻿@model Application.DataTransferObjects.BookDto
 
 <h2>Add book</h2>
 
@@ -68,17 +68,16 @@
                 Description: data.Description,
                 Amount: parseInt(data.Amount)
             };
-
+        
         try {
             const response = await fetch(`/api/books/add`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-                },
-            body: JSON.stringify(bookData)
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                    },
+                body: JSON.stringify(bookData)
             });
-
             if (response.ok) {
                 const booksResponse = await fetch('/api/books/GetBooks', {
                 method: 'GET',

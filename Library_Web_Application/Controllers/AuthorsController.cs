@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using Contracts;
-using Entities.DataTransferObjects;
-using Entities.Models;
+﻿using Application.DataTransferObjects;
+using Application.Services;
 using Entities.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Application.Interfaces;
 
 namespace Library_Web_Application.Controllers;
 
@@ -12,33 +12,29 @@ namespace Library_Web_Application.Controllers;
 [ApiController]
 public class AuthorsController : Controller
 {
-    private readonly IRepositoryManager _repository;
-    private readonly IMapper _mapper;
-    
-    public AuthorsController(IRepositoryManager repository, IMapper mapper)
+    private readonly IAuthorService _authorService;
+
+    public AuthorsController(IAuthorService authorService)
     {
-        _repository = repository;
-        _mapper = mapper;
+        _authorService = authorService;
     }
 
     [HttpGet("authorsPage")]
-    public IActionResult GetAuthors()
+    public IActionResult GetAuthorsPage()
     {
         return View("~/Views/Authors/AllAuthorsPage.cshtml");
     }
-    
+
     [HttpGet("GetAuthors")]
     public async Task<IActionResult> GetAuthors([FromQuery] AuthorParameters requestParameters)
     {
-        var authors = await _repository.Author.GetAllAuthorsAsync(requestParameters, 
-            trackChanges: false);
-        var authorDto = _mapper.Map<IEnumerable<AuthorDto>>(authors);
-        var totalAuthors = await _repository.Author.CountAuthorsAsync(requestParameters); 
+        var authors = await _authorService.GetAllAuthorsAsync(requestParameters);
+        var totalAuthors = await _authorService.CountAuthorsAsync(requestParameters);
         var totalPages = (int)Math.Ceiling((double)totalAuthors / requestParameters.PageSize);
         
         var response = new
         {
-            authors = authorDto,
+            authors,
             currentPage = requestParameters.PageNumber,
             totalPages
         };
@@ -51,11 +47,11 @@ public class AuthorsController : Controller
     {
         return View("~/Views/Authors/AddAuthorPage.cshtml");
     }
-    
+
     [HttpPost("add")]
-    public async Task<IActionResult> CreateAuthor([FromBody]AuthorForCreationDto author)
+    public async Task<IActionResult> CreateAuthor([FromBody] AuthorForCreationDto author)
     {
-        if(author == null)
+        if (author == null)
         {
             return BadRequest("AuthorForCreationDto object is null");
         }
@@ -63,42 +59,32 @@ public class AuthorsController : Controller
         {
             return UnprocessableEntity(ModelState);
         }
-        var authorEntity = _mapper.Map<Author>(author);
-        _repository.Author.CreateAuthor(authorEntity);
-        await _repository.SaveAsync();
+        await _authorService.CreateAuthorAsync(author);
         return Ok();
     }
-    
+
     [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteAuthor(int id)
     {
-        var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
-        if (author == null)
-        {
-            return NotFound();
-        }
-        _repository.Author.DeleteAuthor(author);
-        await _repository.SaveAsync();
+        await _authorService.DeleteAuthorAsync(id);
         return NoContent();
     }
+
     [HttpGet("edit/{id}", Name = "EditAuthor")]
     public async Task<IActionResult> EditAuthor(int id)
     {
-        var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
-        if (author == null)
+        var authorDto = await _authorService.GetAuthorByIdAsync(id);
+        if (authorDto == null)
         {
             return NotFound();
         }
-        var authorDto = _mapper.Map<AuthorDto>(author);
         return View("~/Views/Authors/EditAuthorPage.cshtml", authorDto);
     }
-    
+
     [HttpPut("{id}", Name = "UpdateAuthor")]
     public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorForUpdateDto authorDto)
     {
-        var authorEntity = await _repository.Author.GetAuthorAsync(id, trackChanges: true);
-        _mapper.Map(authorDto, authorEntity);
-        await _repository.SaveAsync();
+        await _authorService.UpdateAuthorAsync(id, authorDto);
         return NoContent();
     }
 }

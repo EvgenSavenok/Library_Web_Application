@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Application.DataTransferObjects;
 using AutoMapper;
 using Contracts;
 using Entities.DataTransferObjects;
