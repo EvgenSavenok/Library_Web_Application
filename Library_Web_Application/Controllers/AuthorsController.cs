@@ -51,10 +51,6 @@ public class AuthorsController : Controller
     [HttpPost("add")]
     public async Task<IActionResult> CreateAuthor([FromBody] AuthorForCreationDto author)
     {
-        if (author == null)
-        {
-            return BadRequest("AuthorForCreationDto object is null");
-        }
         if (!ModelState.IsValid)
         {
             return UnprocessableEntity(ModelState);
@@ -74,10 +70,6 @@ public class AuthorsController : Controller
     public async Task<IActionResult> EditAuthor(int id)
     {
         var authorDto = await _authorService.GetAuthorByIdAsync(id);
-        if (authorDto == null)
-        {
-            return NotFound();
-        }
         return View("~/Views/Authors/EditAuthorPage.cshtml", authorDto);
     }
 

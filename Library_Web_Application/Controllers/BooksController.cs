@@ -95,11 +95,7 @@ public class BooksController : Controller
     public async Task<IActionResult> EditBook(int id)
     {
         var bookDto = await _bookService.GetBookByIdAsync(id);
-        if (bookDto == null)
-        {
-            return NotFound();
-        }
-
+       
         var genres = Enum.GetValues(typeof(BookGenre)).Cast<BookGenre>()
             .Select(g => new SelectListItem
             {
