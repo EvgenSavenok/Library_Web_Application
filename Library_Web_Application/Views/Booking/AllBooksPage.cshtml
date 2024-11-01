@@ -127,9 +127,7 @@
         }
         
         async function showReservedBooks() { 
-            console.log("Start show");
             const token = localStorage.getItem('authToken');
-            console.log(token);
             if (!token) {
                 window.location.href = "/api/authentication/loginPage";
                 return;
@@ -189,7 +187,6 @@
                 }
             } catch (error) {
                 alert("Error loading authors. Please try again later.");
-                console.log(error);
             }
         }       
         loadAuthors();

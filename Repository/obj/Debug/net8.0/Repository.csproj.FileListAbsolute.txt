@@ -20,5 +20,3 @@ C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\bin\Debug\net8.0
 C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
 C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\bin\Debug\net8.0\Repository.runtimeconfig.json
 C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\obj\Debug\net8.0\Repository.genruntimeconfig.cache
-C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\bin\Debug\net8.0\Application.dll
-C:\Users\eugen\RiderProjects\Library_Web_Application\Repository\bin\Debug\net8.0\Application.pdb

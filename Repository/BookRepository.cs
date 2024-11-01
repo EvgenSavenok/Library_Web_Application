@@ -32,8 +32,6 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
     public async Task<Book> GetBookAsync(int bookId, bool trackChanges) =>
         await FindByCondition(c => c.Id.Equals(bookId), trackChanges).SingleOrDefaultAsync();
     
-    public void CreateBook(Book book) => Create(book);
-
     public async Task<int> CountBooksAsync(BookParameters bookParameters)
     {
         var query = FindByCondition(b => true, trackChanges: false);
@@ -46,7 +44,4 @@ public class BookRepository : RepositoryBase<Book>, IBookRepository
         query = query.Search(bookParameters.SearchTerm);
         return await query.CountAsync();
     }
-
-    public void DeleteBook(Book book) =>
-        Delete(book);
 }

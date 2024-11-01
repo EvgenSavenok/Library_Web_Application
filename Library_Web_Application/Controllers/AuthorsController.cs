@@ -76,6 +76,10 @@ public class AuthorsController : Controller
     [HttpPut("{id}", Name = "UpdateAuthor")]
     public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorForUpdateDto authorDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return UnprocessableEntity(ModelState);
+        }
         await _authorService.UpdateAuthorAsync(id, authorDto);
         return NoContent();
     }

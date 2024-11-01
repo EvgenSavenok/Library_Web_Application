@@ -48,7 +48,4 @@ public class AuthorRepository : RepositoryBase<Author>, IAuthorRepository
 
     public async Task<Author> GetAuthorAsync(int authorId, bool trackChanges) =>
         await FindByCondition(c => c.Id.Equals(authorId), trackChanges).SingleOrDefaultAsync();
-    public void CreateAuthor(Author author) => Create(author);
-    public void DeleteAuthor(Author author) => Delete(author);
-
 }

@@ -67,7 +67,7 @@ public class BookingController : Controller
         
         var response = new
         {
-            reservedBooks = reservedBooks,
+            reservedBooks,
             currentPage = requestParameters.PageNumber,
             totalPages
         };

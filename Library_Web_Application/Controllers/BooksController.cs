@@ -3,6 +3,7 @@ using Application.Interfaces;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -27,7 +28,7 @@ public class BooksController : Controller
         return View("~/Views/Books/AllBooksPage.cshtml");
     }
 
-    [HttpGet("GetBooks")]
+    [HttpGet("GetBooks"), Authorize]
     public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
     {
         var books = await _bookService.GetBooksAsync(requestParameters);
@@ -95,7 +96,6 @@ public class BooksController : Controller
     public async Task<IActionResult> EditBook(int id)
     {
         var bookDto = await _bookService.GetBookByIdAsync(id);
-       
         var genres = Enum.GetValues(typeof(BookGenre)).Cast<BookGenre>()
             .Select(g => new SelectListItem
             {

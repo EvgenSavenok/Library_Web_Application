@@ -19,8 +19,6 @@ public class UserBookBorrowRepository : RepositoryBase<UserBookBorrow>, IUserBoo
     public async Task<UserBookBorrow> GetUserBookBorrowAsync(int id, bool trackChanges) =>
         await FindByCondition(b => b.Id == id, trackChanges).SingleOrDefaultAsync();
 
-    public void CreateUserBookBorrow(UserBookBorrow borrow) => Create(borrow);
-    
     public async Task<IEnumerable<UserBookBorrow>> GetAllUserBookBorrowsAsync
         (BorrowParameters borrowParameters, string userId, bool trackChanges)
     {

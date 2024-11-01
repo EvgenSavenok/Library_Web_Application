@@ -33,6 +33,9 @@
               },
               "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Entities\\Entities.csproj": {
                 "projectPath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Entities\\Entities.csproj"
+              },
+              "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Repository\\Repository.csproj"
               }
             }
           }
@@ -415,8 +418,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Application\\Application.csproj"
+              "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Contracts\\Contracts.csproj": {
+                "projectPath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Contracts\\Contracts.csproj"
+              },
+              "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Entities\\Entities.csproj"
               }
             }
           }

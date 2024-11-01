@@ -10,7 +10,6 @@ using Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigureCors();
-builder.Services.ConfigureIISIntegration();
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
@@ -46,14 +45,11 @@ app.Urls.Add("http://*:5100");
 app.UseStaticFiles();
 var logger = app.Services.GetRequiredService<ILoggerManager>();
 
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
-    app.UseSwaggerUI(s =>
-    {
-        s.SwaggerEndpoint("/swagger/v1/swagger.json", "Library API");
-    });
-//}
+app.UseSwagger();
+app.UseSwaggerUI(s =>
+{
+    s.SwaggerEndpoint("/swagger/v1/swagger.json", "Library API");
+});
 
 app.UseHttpsRedirection();
 

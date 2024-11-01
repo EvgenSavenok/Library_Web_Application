@@ -5,6 +5,8 @@ using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
+using Microsoft.EntityFrameworkCore;
+using Repository;
 
 namespace Application.Services;
 
@@ -40,7 +42,7 @@ public class BookService : IBookService
     public async Task CreateBookAsync(BookForCreationDto bookDto)
     {
         var bookEntity = _mapper.Map<Book>(bookDto);
-        _repository.Book.CreateBook(bookEntity);
+        _repository.Book.Create(bookEntity);
         await _repository.SaveAsync();
     }
 
@@ -51,7 +53,6 @@ public class BookService : IBookService
         {
             _logger.LogInfo($"Book with id: {bookId} doesn't exist in the database.");
         }
-
         _mapper.Map(bookDto, bookEntity);
         await _repository.SaveAsync();
     }
@@ -63,7 +64,7 @@ public class BookService : IBookService
         {
             _logger.LogInfo($"Book with id: {bookId} doesn't exist in the database.");
         }
-        _repository.Book.DeleteBook(book);
+        _repository.Book.Delete(book);
         await _repository.SaveAsync();
     }
 

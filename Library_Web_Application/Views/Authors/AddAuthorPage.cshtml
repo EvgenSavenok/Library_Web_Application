@@ -6,22 +6,22 @@
 <form id="addAuthorForm">
     <div>
         <label>Name</label>
-        <input type="text" name="Name" placeholder="Name" />
+        <input type="text" name="Name" placeholder="Name" required=""/>
     </div>
 
     <div>
         <label>Last name</label>
-        <input type="text" name="LastName" placeholder="LastName" />
+        <input type="text" name="LastName" placeholder="LastName" required=""/>
     </div>
 
     <div>
         <label>Date of birth</label>
-        <input type="text" name="BirthDate" placeholder="BirthDate" />
+        <input type="text" name="BirthDate" placeholder="BirthDate" required=""/>
     </div>
 
     <div>
         <label>Country</label>
-        <input type="text" name="Country" placeholder="Country" />
+        <input type="text" name="Country" placeholder="Country" required=""/>
     </div>
 
     <button type="button" onclick="submitForm()">Add</button>
@@ -37,10 +37,10 @@
         const token = localStorage.getItem('authToken');
         
         const authorData = {
-                Name: data.Name,
-                LastName: data.LastName,
-                BirthDate: data.BirthDate, 
-                Country: data.Country
+                Name: data.Name.trim() || null,
+                LastName: data.LastName.trim() || null,
+                BirthDate: data.BirthDate.trim() || null, 
+                Country: data.Country.trim() || null
         };
 
         try {

@@ -4,6 +4,7 @@ using System.Text;
 using Contracts;
 using Entities;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -26,8 +27,8 @@ public class AuthenticationManager : IAuthenticationManager
     public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuth)
     {
         _user = await _userManager.FindByNameAsync(userForAuth.UserName);
-        return (_user != null && await _userManager.CheckPasswordAsync(_user,
-            userForAuth.Password));
+        return _user != null && await _userManager.CheckPasswordAsync(_user,
+            userForAuth.Password);
     }
     
     public async Task<string> CreateToken()
@@ -50,8 +51,8 @@ public class AuthenticationManager : IAuthenticationManager
     {
         var claims = new List<Claim>
         {
-            new Claim(ClaimTypes.Name, _user.UserName!),
-            new Claim(ClaimTypes.NameIdentifier, _user.Id)
+            new(ClaimTypes.Name, _user.UserName!),
+            new(ClaimTypes.NameIdentifier, _user.Id)
         };
         var roles = await _userManager.GetRolesAsync(_user);
         foreach (var role in roles)

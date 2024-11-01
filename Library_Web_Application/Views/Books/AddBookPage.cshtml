@@ -61,11 +61,11 @@
         const token = localStorage.getItem('authToken');
         
         const bookData = {
-                BookTitle: data.BookTitle,
-                ISBN: data.ISBN,
+                BookTitle: data.BookTitle.trim() || null,
+                ISBN: data.ISBN.trim() || null,
                 AuthorId: parseInt(data.AuthorId), 
                 Genre: data.Genre,
-                Description: data.Description,
+                Description: data.Description.trim() || null,
                 Amount: parseInt(data.Amount)
             };
         

@@ -18,6 +18,8 @@ public class ApplicationContext : IdentityDbContext<User>
         modelBuilder.ApplyConfiguration(new AuthorConfiguration());
         modelBuilder.ApplyConfiguration(new BookConfiguration());
         modelBuilder.ApplyConfiguration(new RoleConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfiguration(new BorrowConfiguration());
     }
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }

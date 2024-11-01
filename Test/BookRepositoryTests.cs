@@ -81,7 +81,7 @@ namespace Test
             await using (var context = new ApplicationContext(_dbContextOptions))
             {
                 var repository = new BookRepository(context);
-                repository.CreateBook(newBook);
+                repository.Create(newBook);
                 await context.SaveChangesAsync(); 
             }
 

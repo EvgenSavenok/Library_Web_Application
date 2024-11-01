@@ -39,10 +39,10 @@
         
         const authorData = {
             Id: authorId,
-            Name: data.Name,
-            LastName: data.LastName,
-            BirthDate: data.BirthDate,
-            Country: data.Country
+            Name: data.Name.trim() || null,
+            LastName: data.LastName.trim() || null,
+            BirthDate: data.BirthDate.trim() || null,
+            Country: data.Country.trim() || null
         };
 
         try {

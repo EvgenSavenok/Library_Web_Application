@@ -4,6 +4,7 @@ using AutoMapper;
 using Contracts;
 using Entities;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services;

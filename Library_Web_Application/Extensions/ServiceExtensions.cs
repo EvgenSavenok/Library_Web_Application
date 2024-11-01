@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Contracts;
 using Entities;
+using Entities.Models;
 using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -21,10 +22,6 @@ public static class ServiceExtensions
                     .AllowAnyMethod()
                     .AllowAnyHeader());
         });
-    
-    public static void ConfigureIISIntegration(this IServiceCollection services) =>
-        services.Configure<IISOptions>(options =>
-            { });
     
     public static void ConfigureSqlContext(this IServiceCollection services,
         IConfiguration configuration) =>

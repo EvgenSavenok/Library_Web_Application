@@ -59,20 +59,13 @@
         const currentBookData = await currentBookResponse.json();
         const bookData = {
             Id: bookId,
-            BookTitle: data.BookTitle,
-            ISBN: data.ISBN,
-            // Author: {  
-            //     Id: parseInt(currentBookData.id),  
-            //     Name: authorName,                        
-            //     LastName: authorLastName,                
-            //     BirthDate: currentBookData.author.birthDate,  
-            //     Country: currentBookData.author.country        
-            // }, 
+            BookTitle: data.BookTitle.trim() || null,
+            ISBN: data.ISBN.trim() || null,
             AuthorId: currentBookData.authorId,
             AuthorName: currentBookData.authorName,
             AuthorLastName: currentBookData.authorLastName,
             Genre: data.Genre,
-            Description: data.Description,
+            Description: data.Description.trim() || null,
             Amount: parseInt(data.Amount)
         };
 

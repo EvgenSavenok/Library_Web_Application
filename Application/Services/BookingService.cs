@@ -30,7 +30,7 @@ public class BookingService : IBookingService
     public async Task CreateUserBookBorrowAsync(UserBookBorrowDto borrowDto)
     {
         var borrowEntity = _mapper.Map<UserBookBorrow>(borrowDto);
-        _repository.Borrow.CreateUserBookBorrow(borrowEntity);
+        _repository.Borrow.Create(borrowEntity);
         await _repository.SaveAsync();
     }
 

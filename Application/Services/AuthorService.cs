@@ -33,7 +33,7 @@ namespace Application.Services
         public async Task CreateAuthorAsync(AuthorForCreationDto author)
         {
             var authorEntity = _mapper.Map<Author>(author);
-            _repository.Author.CreateAuthor(authorEntity);
+            _repository.Author.Create(authorEntity);
             await _repository.SaveAsync();
         }
 
@@ -47,7 +47,7 @@ namespace Application.Services
         public async Task DeleteAuthorAsync(int id)
         {
             var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
-            _repository.Author.DeleteAuthor(author);
+            _repository.Author.Delete(author);
             await _repository.SaveAsync();
         }
         
