@@ -149,6 +149,12 @@ namespace Entities.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("RefreshTokenExpireTime")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
@@ -230,13 +236,13 @@ namespace Entities.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0ee21c92-180a-4489-95db-e154aee6ff13",
+                            Id = "1247356d-c8a8-4c76-bd8c-626766c60c18",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "b9a67304-390b-41a4-9a5d-76cb408bce94",
+                            Id = "198591b1-c306-4130-969f-b6956c516fd4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

@@ -82,7 +82,7 @@ public class BooksController : Controller
         return View("~/Views/Books/AddBookPage.cshtml");
     }
 
-    [HttpPost("add")]
+    [HttpPost("add"), Authorize]
     public async Task<IActionResult> CreateBook([FromBody] BookForCreationDto book)
     {
         if (!ModelState.IsValid)
@@ -118,7 +118,7 @@ public class BooksController : Controller
     }
 
 
-    [HttpPut("{id}", Name = "UpdateBook")]
+    [HttpPut("{id}", Name = "UpdateBook"), Authorize]
     public async Task<IActionResult> UpdateBook(int id, [FromBody] BookForUpdateDto bookDto)
     {
         try
@@ -132,7 +132,7 @@ public class BooksController : Controller
         }
     }
 
-    [HttpDelete("delete/{id}")]
+    [HttpDelete("delete/{id}"), Authorize]
     public async Task<IActionResult> DeleteBook(int id)
     {
         try

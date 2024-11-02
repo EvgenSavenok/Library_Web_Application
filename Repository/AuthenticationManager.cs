@@ -1,8 +1,10 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Contracts;
 using Entities;
+using Entities.AuthDto;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
@@ -31,12 +33,30 @@ public class AuthenticationManager : IAuthenticationManager
             userForAuth.Password);
     }
     
-    public async Task<string> CreateToken()
+    private string GenerateRefreshToken()
     {
+        var randomNumber = new byte[32];
+        using (var rng = RandomNumberGenerator.Create())
+        {
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
+        }
+    }
+    public async Task<TokenDto> CreateToken(User user, bool populateExp)
+    {
+        const int refreshTokenLifeTime = 10;
+        _user = user;
         var signingCredentials = GetSigningCredentials();
         var claims = await GetClaims();
         var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
-        return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        
+        var refreshToken = GenerateRefreshToken();
+        _user.RefreshToken = refreshToken;
+        if (populateExp)
+            _user.RefreshTokenExpireTime = DateTime.UtcNow.AddMinutes(refreshTokenLifeTime);
+        await _userManager.UpdateAsync(_user);
+        var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        return new TokenDto(accessToken, refreshToken);
     }
     private SigningCredentials GetSigningCredentials()
     {

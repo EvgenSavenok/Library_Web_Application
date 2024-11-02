@@ -48,12 +48,15 @@
         
                 const result = await response.json(); 
             
-                if (response.ok) {  
-                    localStorage.setItem('authToken', result.token);   
+                if (response.ok) {
+                    localStorage.setItem('authToken', result.accessToken);
+                    localStorage.setItem('refreshToken', result.refreshToken);   
+                   
                     const token = localStorage.getItem('authToken'); 
                     const decodedToken = parseJwt(token);
                     const role = decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-                    if (role === 'Administrator') {
+                    
+                    if (role === 'Administrator') {                      
                         window.location.href = '/api/books/admin'; 
                     } else if (role === 'User') {
                         window.location.href = '/api/booking/user'; 

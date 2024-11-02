@@ -60,13 +60,11 @@ public class AuthenticationController : Controller
         {
             return BadRequest("Invalid login request");
         }
-
-        var token = await _authService.AuthenticateUserAsync(userForLogin);
-        if (token == null)
+        var (accessToken, refreshToken) = await _authService.AuthenticateUserAsync(userForLogin);
+        if (accessToken == null || refreshToken == null)
         {
             return Unauthorized();
         }
-
-        return Ok(new { Token = token });
+        return Ok(new { AccessToken = accessToken, RefreshToken = refreshToken });
     }
 }

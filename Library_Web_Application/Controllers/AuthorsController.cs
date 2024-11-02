@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Library_Web_Application.Controllers;
 
@@ -48,7 +49,7 @@ public class AuthorsController : Controller
         return View("~/Views/Authors/AddAuthorPage.cshtml");
     }
 
-    [HttpPost("add")]
+    [HttpPost("add"), Authorize]
     public async Task<IActionResult> CreateAuthor([FromBody] AuthorForCreationDto author)
     {
         if (!ModelState.IsValid)
@@ -59,7 +60,7 @@ public class AuthorsController : Controller
         return Ok();
     }
 
-    [HttpDelete("delete/{id}")]
+    [HttpDelete("delete/{id}"), Authorize]
     public async Task<IActionResult> DeleteAuthor(int id)
     {
         await _authorService.DeleteAuthorAsync(id);
@@ -73,7 +74,7 @@ public class AuthorsController : Controller
         return View("~/Views/Authors/EditAuthorPage.cshtml", authorDto);
     }
 
-    [HttpPut("{id}", Name = "UpdateAuthor")]
+    [HttpPut("{id}", Name = "UpdateAuthor"), Authorize]
     public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorForUpdateDto authorDto)
     {
         if (!ModelState.IsValid)

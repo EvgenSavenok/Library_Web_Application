@@ -1,9 +1,11 @@
-﻿using Entities.DataTransferObjects;
+﻿using Entities.AuthDto;
+using Entities.DataTransferObjects;
+using Entities.Models;
 
 namespace Contracts;
 
 public interface IAuthenticationManager
 {
     Task<bool> ValidateUser(UserForAuthenticationDto userForAuth);
-    Task<string> CreateToken();
+    Task<TokenDto> CreateToken(User user, bool populateExp);
 }
