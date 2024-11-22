@@ -1,6 +1,0 @@
-2024-11-04 18:00:17.5807 WARN Invalid login attempt.
-2024-11-04 18:00:20.1769 WARN Invalid login attempt.
-2024-11-04 18:00:22.0104 WARN Invalid login attempt.
-2024-11-04 18:00:49.3230 WARN Invalid login attempt.
-2024-11-04 18:00:52.2046 WARN Invalid login attempt.
-2024-11-04 18:01:00.3385 WARN Invalid login attempt.
