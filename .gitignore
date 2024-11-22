@@ -15,6 +15,7 @@ obj/
 # Logs
 *.log
 logs/
+internal_logs/
 
 # OS-specific files
 .DS_Store
@@ -60,5 +61,3 @@ out/
 .idea/
 *.iml
 
-# Configuration folders
-Properties/launchSettings.json
