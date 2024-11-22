@@ -1,9 +1,10 @@
-﻿using Application.DataTransferObjects;
-using Application.Interfaces;
+﻿using Application.Contracts;
+using Application.DataTransferObjects;
 using AutoMapper;
-using Contracts;
-using Entities.Models;
-using Entities.RequestFeatures;
+using Domain.Entities.Models;
+using Domain.Entities.RequestFeatures;
+
+namespace Application.Services;
 
 public class BookingService : IBookingService
 {
@@ -18,7 +19,7 @@ public class BookingService : IBookingService
 
     public async Task<IEnumerable<UserBookBorrow>> GetAllUserBookBorrowsAsync(BorrowParameters requestParameters, string userId)
     {
-         return await _repository.Borrow.GetAllUserBookBorrowsAsync(requestParameters, userId, trackChanges: false);
+        return await _repository.Borrow.GetAllUserBookBorrowsAsync(requestParameters, userId, trackChanges: false);
     }
 
     public async Task<UserBookBorrowDto> GetUserBookBorrowAsync(int id)

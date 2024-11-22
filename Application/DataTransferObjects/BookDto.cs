@@ -1,4 +1,4 @@
-﻿using Entities.Models;
+﻿using Domain.Entities.Models;
 
 namespace Application.DataTransferObjects;
 

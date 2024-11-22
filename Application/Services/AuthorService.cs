@@ -1,9 +1,8 @@
-﻿using Application.DataTransferObjects;
+﻿using Application.Contracts;
+using Application.DataTransferObjects;
 using AutoMapper;
-using Contracts;
-using Entities.Models;
-using Entities.RequestFeatures;
-using Application.Interfaces;
+using Domain.Entities.Models;
+using Domain.Entities.RequestFeatures;
 
 namespace Application.Services
 {

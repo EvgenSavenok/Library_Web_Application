@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="NLog" Version="5.3.4" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\Authors\AddAuthorPage.cshtml" />
+      <AdditionalFiles Include="Views\Authors\AllAuthorsPage.cshtml" />
+      <AdditionalFiles Include="Views\Authors\EditAuthorPage.cshtml" />
+      <AdditionalFiles Include="Views\Auth\LoginPage.cshtml" />
+      <AdditionalFiles Include="Views\Auth\RegisterPage.cshtml" />
+      <AdditionalFiles Include="Views\Booking\AllBooksPage.cshtml" />
+      <AdditionalFiles Include="Views\Booking\InfoAboutBook.cshtml" />
+      <AdditionalFiles Include="Views\Booking\NoReservedBooksPage.cshtml" />
+      <AdditionalFiles Include="Views\Booking\ReservedBooksPage.cshtml" />
+      <AdditionalFiles Include="Views\Books\AddBookPage.cshtml" />
+      <AdditionalFiles Include="Views\Books\AllBooksPage.cshtml" />
+      <AdditionalFiles Include="Views\Books\EditBookPage.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Application\Application.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+
+</Project>

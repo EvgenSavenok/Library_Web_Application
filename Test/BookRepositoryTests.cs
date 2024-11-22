@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Xunit;
-using Entities;
-using Entities.Models;
-using Repository;
+﻿using Domain.Entities;
+using Domain.Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using FluentAssertions;
+using Repository;
+using Repository.Repositories;
 
 namespace Test
 {
