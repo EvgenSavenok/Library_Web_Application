@@ -1,0 +1,73 @@
+2024-10-19 11:17:31.0928 INFO Auth is ok
+2024-10-19 11:39:23.6661 INFO Auth is ok
+2024-10-19 11:40:53.1188 INFO Auth is ok
+2024-10-19 11:42:18.2929 INFO Auth is ok
+2024-10-19 11:44:07.2107 INFO Auth is ok
+2024-10-19 11:46:14.1639 INFO Auth is ok
+2024-10-19 11:49:32.8689 INFO Auth is ok
+2024-10-19 12:07:38.0757 INFO Auth is ok
+2024-10-19 12:25:36.7736 INFO Auth is ok
+2024-10-19 12:26:52.4501 INFO Auth is ok
+2024-10-19 12:28:01.0312 INFO Auth is ok
+2024-10-19 12:41:47.6371 INFO Auth is ok
+2024-10-19 12:44:35.8445 INFO Auth is ok
+2024-10-19 12:45:21.6045 ERROR Something went wrong: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Author -> BookDto
+Entities.Models.Author -> Entities.DataTransferObjects.BookDto
+   at lambda_method318(Closure, Object, BookDto, ResolutionContext)
+   at Library_Web_Application.Controllers.AuthorsController.CreateAuthor(AuthorForCreationDto author) in C:\Users\eugen\RiderProjects\Library_Web_Application\Library_Web_Application\Controllers\AuthorsController.cs:line 68
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2024-10-19 12:46:20.8669 INFO Auth is ok
+2024-10-19 12:46:39.9777 ERROR Something went wrong: AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+Author -> BookDto
+Entities.Models.Author -> Entities.DataTransferObjects.BookDto
+   at lambda_method294(Closure, Object, BookDto, ResolutionContext)
+   at Library_Web_Application.Controllers.AuthorsController.CreateAuthor(AuthorForCreationDto author) in C:\Users\eugen\RiderProjects\Library_Web_Application\Library_Web_Application\Controllers\AuthorsController.cs:line 68
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Logged|12_1(ControllerActionInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+2024-10-19 12:48:24.5313 INFO Auth is ok
+2024-10-19 12:50:11.2128 INFO Auth is ok
+2024-10-19 13:03:56.1892 INFO Auth is ok
+2024-10-19 13:08:59.4519 INFO Auth is ok
+2024-10-19 13:26:07.5563 INFO Auth is ok
+2024-10-19 13:33:45.0297 INFO Auth is ok
+2024-10-19 13:43:19.4674 INFO Auth is ok
+2024-10-19 13:47:26.4625 INFO Auth is ok
+2024-10-19 13:49:43.4947 INFO Auth is ok
+2024-10-19 13:51:13.6348 INFO Auth is ok
+2024-10-19 13:59:08.6963 INFO Auth is ok
+2024-10-19 14:11:00.1479 INFO Auth is ok
+2024-10-19 15:17:57.1569 INFO Auth is ok
+2024-10-19 15:19:06.9412 INFO Auth is ok
+2024-10-19 15:19:25.9102 INFO Auth is ok
+2024-10-19 15:21:06.1953 INFO Auth is ok
+2024-10-19 15:22:19.3249 INFO Auth is ok
+2024-10-19 15:23:30.9915 INFO Auth is ok
+2024-10-19 15:25:50.0695 INFO Auth is ok

@@ -1,0 +1,89 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Auth\\login_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Auth\\login_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Auth\\register_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Auth\\register_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\add_author_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\add_author_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\authors_form_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\authors_form_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\authors_table_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\authors_table_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Authors\\edit_author_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Authors\\edit_author_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\all_reserved_books_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Booking\\all_reserved_books_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\book_info_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Booking\\book_info_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Booking\\success_reserving_form_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Booking\\success_reserving_form_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\add_book_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\add_book_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\books_table_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\books_table_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\delete_book_window_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\delete_book_window_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\edit_book_page_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\edit_book_page_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\Books\\pagination_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\Books\\pagination_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\CSS\\MainPage\\search_styles.css",
+      "PackagePath": "staticwebassets\\CSS\\MainPage\\search_styles.css"
+    },
+    {
+      "Id": "C:\\Users\\eugen\\RiderProjects\\Library_Web_Application\\Library_Web_Application\\wwwroot\\JS\\auth.js",
+      "PackagePath": "staticwebassets\\JS\\auth.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Library_Web_Application.props",
+      "PackagePath": "build\\Library_Web_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Library_Web_Application.props",
+      "PackagePath": "buildMultiTargeting\\Library_Web_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Library_Web_Application.props",
+      "PackagePath": "buildTransitive\\Library_Web_Application.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
