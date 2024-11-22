@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8191fb51-98c4-4bef-909b-5d0e24521801" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Library_Web_Application/bin/Debug/net8.0/Library_Web_Application.staticwebassets.endpoints.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library_Web_Application/obj/Debug/net8.0/staticwebassets.build.endpoints.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Library_Web_Application/obj/Debug/net8.0/staticwebassets/msbuild.Library_Web_Application.Microsoft.AspNetCore.StaticWebAssetEndpoints.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Library_Web_Application/Docker/docker-compose.generated.override.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library_Web_Application/Library_Web_Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Library_Web_Application/Library_Web_Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library_Web_Application/Views/Booking/InfoAboutBook.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Library_Web_Application/Views/Booking/InfoAboutBook.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
+    <list default="true" id="8191fb51-98c4-4bef-909b-5d0e24521801" name="Changes" comment="Fix: gitignore">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,7 +337,7 @@
       <workItem from="1731773720821" duration="54000" />
       <workItem from="1731839419529" duration="205000" />
       <workItem from="1731923412805" duration="192000" />
-      <workItem from="1732263059081" duration="624000" />
+      <workItem from="1732263059081" duration="1709000" />
     </task>
     <task id="LOCAL-00001" summary="Library_Web_Application.csproj: create project">
       <option name="closed" value="true" />
@@ -643,7 +635,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730559461029</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Fix: gitignore">
+      <option name="closed" value="true" />
+      <created>1732263696859</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1732263696859</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,9 +676,9 @@
     <MESSAGE value="Feat: borrowing in application layer" />
     <MESSAGE value="Feat: fluent api" />
     <MESSAGE value="Feat: refresh tokens" />
-    <MESSAGE value="Fix: gitignore" />
     <MESSAGE value="Delete obj and bin" />
     <MESSAGE value="Delete .vs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete .vs" />
+    <MESSAGE value="Fix: gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: gitignore" />
   </component>
 </project>
