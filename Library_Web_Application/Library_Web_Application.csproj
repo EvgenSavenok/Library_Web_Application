@@ -40,12 +40,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <None Include="wwwroot\CSS\Booking\success_reserving_form_styles.css" />
     </ItemGroup>
 
