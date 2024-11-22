@@ -47,8 +47,6 @@ out/
 *.trx
 
 # ASP.NET Core specific
-appsettings.*.json
-appsettings.json
 .env
 *.Secret.json
 
