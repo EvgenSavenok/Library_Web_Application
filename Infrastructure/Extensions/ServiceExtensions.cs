@@ -11,7 +11,6 @@ using Application.UseCases.BorrowingUseCases;
 using Domain.Entities;
 using Domain.Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -73,7 +72,7 @@ public static class ServiceExtensions
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidateAudience = false,
+                    ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtSettings.GetSection("validIssuer").Value,

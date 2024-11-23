@@ -34,7 +34,7 @@ public class RefreshTokenUseCase : IRefreshTokenUseCase
         var tokenValidationParameters = new TokenValidationParameters
         {
             ValidateAudience = false,
-            ValidateIssuer = true,
+            ValidateIssuer = false,
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new
                 SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
@@ -44,8 +44,7 @@ public class RefreshTokenUseCase : IRefreshTokenUseCase
         };
         
         var tokenHandler = new JwtSecurityTokenHandler();
-        SecurityToken securityToken;
-        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
+        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
         var jwtSecurityToken = securityToken as JwtSecurityToken;
 
         if (jwtSecurityToken is null || !jwtSecurityToken.Header.Alg

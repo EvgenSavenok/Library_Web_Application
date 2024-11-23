@@ -17,6 +17,7 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.AddAutoMapper(typeof(Mapping));
+builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.AddUseCases();
