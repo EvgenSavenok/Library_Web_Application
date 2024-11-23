@@ -11,6 +11,7 @@
       <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.4" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.11" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
       <PackageReference Include="xunit" Version="2.9.2" />
       <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0-pre.42">
         <PrivateAssets>all</PrivateAssets>
