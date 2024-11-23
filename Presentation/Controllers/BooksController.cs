@@ -1,4 +1,4 @@
-﻿using Application.Contracts;
+﻿using Application.Contracts.ServicesContracts;
 using Application.DataTransferObjects;
 using Domain.Entities.Models;
 using Domain.Entities.RequestFeatures;
@@ -27,7 +27,7 @@ public class BooksController : Controller
         return View("~/Views/Books/AllBooksPage.cshtml");
     }
 
-    [HttpGet("GetBooks"), Authorize]
+    [HttpGet("GetBooks")]
     public async Task<IActionResult> GetBooks([FromQuery] BookParameters requestParameters)
     {
         var books = await _bookService.GetBooksAsync(requestParameters);
@@ -40,6 +40,7 @@ public class BooksController : Controller
             currentPage = requestParameters.PageNumber,
             totalPages
         };
+
         return Ok(response);
     }
 
@@ -81,7 +82,7 @@ public class BooksController : Controller
         return View("~/Views/Books/AddBookPage.cshtml");
     }
 
-    [HttpPost("add"), Authorize]
+    [HttpPost("add")]
     public async Task<IActionResult> CreateBook([FromBody] BookForCreationDto book)
     {
         if (!ModelState.IsValid)
@@ -117,7 +118,7 @@ public class BooksController : Controller
     }
 
 
-    [HttpPut("{id}", Name = "UpdateBook"), Authorize]
+    [HttpPut("{id}", Name = "UpdateBook")]
     public async Task<IActionResult> UpdateBook(int id, [FromBody] BookForUpdateDto bookDto)
     {
         try
@@ -131,7 +132,7 @@ public class BooksController : Controller
         }
     }
 
-    [HttpDelete("delete/{id}"), Authorize]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
         try

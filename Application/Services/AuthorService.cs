@@ -1,4 +1,6 @@
 ﻿using Application.Contracts;
+using Application.Contracts.ServicesContracts;
+using Application.Contracts.UseCasesContracts.AuthorUseCasesContracts;
 using Application.DataTransferObjects;
 using AutoMapper;
 using Domain.Entities.Models;
@@ -8,51 +10,44 @@ namespace Application.Services
 {
     public class AuthorService : IAuthorService
     {
-        private readonly IRepositoryManager _repository;
-        private readonly IMapper _mapper;
+        private readonly ICountAuthorsUseCase _countAuthorsUseCase;
+        private readonly ICreateAuthorUseCase _createAuthorUseCase;
+        private readonly IDeleteAuthorUseCase _deleteAuthorUseCase;
+        private readonly IGetAllAuthorsUseCase _getAllAuthorsUseCase;
+        private readonly IGetAuthorByIdUseCase _getAuthorByIdUseCase;
+        private readonly IUpdateAuthorUseCase _updateAuthorUseCase;
 
-        public AuthorService(IRepositoryManager repository, IMapper mapper)
+        public AuthorService(
+            ICountAuthorsUseCase countAuthorsUseCase,
+            ICreateAuthorUseCase createAuthorUseCase,
+            IDeleteAuthorUseCase deleteAuthorUseCase,
+            IGetAllAuthorsUseCase getAllAuthorsUseCase,
+            IGetAuthorByIdUseCase getAuthorByIdUseCase,
+            IUpdateAuthorUseCase updateAuthorUseCase)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _countAuthorsUseCase = countAuthorsUseCase;
+            _createAuthorUseCase = createAuthorUseCase;
+            _deleteAuthorUseCase = deleteAuthorUseCase;
+            _getAllAuthorsUseCase = getAllAuthorsUseCase;
+            _getAuthorByIdUseCase = getAuthorByIdUseCase;
+            _updateAuthorUseCase = updateAuthorUseCase;
         }
-
         public async Task<IEnumerable<AuthorDto>> GetAllAuthorsAsync(AuthorParameters requestParameters)
-        {
-            var authors = await _repository.Author.GetAllAuthorsAsync(requestParameters, trackChanges: false);
-            return _mapper.Map<IEnumerable<AuthorDto>>(authors);
-        }
+            => await _getAllAuthorsUseCase.ExecuteAsync(requestParameters);
 
         public async Task<AuthorDto> GetAuthorByIdAsync(int id)
-        {
-            var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
-            return _mapper.Map<AuthorDto>(author);
-        }
+            => await _getAuthorByIdUseCase.ExecuteAsync(id);
 
         public async Task CreateAuthorAsync(AuthorForCreationDto author)
-        {
-            var authorEntity = _mapper.Map<Author>(author);
-            _repository.Author.Create(authorEntity);
-            await _repository.SaveAsync();
-        }
+            => await _createAuthorUseCase.ExecuteAsync(author);
 
         public async Task UpdateAuthorAsync(int id, AuthorForUpdateDto author)
-        {
-            var authorEntity = await _repository.Author.GetAuthorAsync(id, trackChanges: true);
-            _mapper.Map(author, authorEntity);
-            await _repository.SaveAsync();
-        }
+            => await _updateAuthorUseCase.ExecuteAsync(id, author);
 
         public async Task DeleteAuthorAsync(int id)
-        {
-            var author = await _repository.Author.GetAuthorAsync(id, trackChanges: false);
-            _repository.Author.Delete(author);
-            await _repository.SaveAsync();
-        }
+            => await _deleteAuthorUseCase.ExecuteAsync(id);
         
         public async Task<int> CountAuthorsAsync(AuthorParameters requestParameters)
-        {
-            return await _repository.Author.CountAuthorsAsync(requestParameters);
-        }
+            => await _countAuthorsUseCase.ExecuteAsync(requestParameters);
     }
 }

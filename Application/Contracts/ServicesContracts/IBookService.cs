@@ -1,7 +1,7 @@
 ﻿using Application.DataTransferObjects;
 using Domain.Entities.RequestFeatures;
 
-namespace Application.Contracts;
+namespace Application.Contracts.ServicesContracts;
 
 public interface IBookService
 {

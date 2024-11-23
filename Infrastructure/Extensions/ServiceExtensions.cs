@@ -1,8 +1,17 @@
 ﻿using System.Text;
 using Application.Contracts;
+using Application.Contracts.UseCasesContracts.AuthorUseCasesContracts;
+using Application.Contracts.UseCasesContracts.AuthUseCasesContracts;
+using Application.Contracts.UseCasesContracts.BookUseCasesContracts;
+using Application.Contracts.UseCasesContracts.BorrowUseCasesContracts;
+using Application.UseCases.AuthorUseCases;
+using Application.UseCases.AuthUseCases;
+using Application.UseCases.BookUseCases;
+using Application.UseCases.BorrowingUseCases;
 using Domain.Entities;
 using Domain.Entities.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -64,7 +73,7 @@ public static class ServiceExtensions
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = jwtSettings.GetSection("validIssuer").Value,
@@ -73,6 +82,34 @@ public static class ServiceExtensions
                         SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!))
                 };
             });
+    }
+    
+    public static IServiceCollection AddUseCases(this IServiceCollection services)
+    {
+        services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+        services.AddScoped<IAuthenticateUserUseCase, AuthenticateUserUseCase>();
+        services.AddScoped<IRefreshTokenUseCase, RefreshTokenUseCase>();
+        
+        services.AddScoped<IGetBooksUseCase, GetBooksUseCase>();
+        services.AddScoped<IGetBookByIdUseCase, GetBookByIdUseCase>();
+        services.AddScoped<ICreateBookUseCase, CreateBookUseCase>();
+        services.AddScoped<IUpdateBookUseCase, UpdateBookUseCase>();
+        services.AddScoped<IDeleteBookUseCase, DeleteBookUseCase>();
+        services.AddScoped<ICountBooksUseCase, CountBooksUseCase>();
+
+        services.AddScoped<ICountAuthorsUseCase, CountAuthorsUseCase>();
+        services.AddScoped<ICreateAuthorUseCase, CreateAuthorUseCase>();
+        services.AddScoped<IDeleteAuthorUseCase, DeleteAuthorUseCase>();
+        services.AddScoped<IGetAllAuthorsUseCase, GetAllAuthorsUseCase>();
+        services.AddScoped<IGetAuthorByIdUseCase, GetAuthorByIdUseCase>();
+        services.AddScoped<IUpdateAuthorUseCase, UpdateAuthorUseCase>();
+        
+        services.AddScoped<ICountBorrowsUseCase, CountBorrowsUseCase>();
+        services.AddScoped<ICreateBorrowUseCase, CreateBorrowUseCase>();
+        services.AddScoped<IGetUserBorrowUseCase, GetUserBorrowUseCase>();
+        services.AddScoped<IGetUsersBorowsUseCase, GetUsersBorowsUseCase>();
+        
+        return services;
     }
     public static void ConfigureSwagger(this IServiceCollection services)
     {

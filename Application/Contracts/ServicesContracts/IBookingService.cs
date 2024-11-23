@@ -2,7 +2,7 @@
 using Domain.Entities.Models;
 using Domain.Entities.RequestFeatures;
 
-namespace Application.Contracts;
+namespace Application.Contracts.ServicesContracts;
 
 public interface IBookingService
 {

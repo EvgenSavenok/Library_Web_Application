@@ -1,4 +1,6 @@
-﻿using Application.Contracts;
+﻿using System.Security.Claims;
+using Application.Contracts;
+using Application.Contracts.ServicesContracts;
 using Application.DataTransferObjects;
 using Domain.Entities.AuthDto;
 using Microsoft.AspNetCore.Mvc;

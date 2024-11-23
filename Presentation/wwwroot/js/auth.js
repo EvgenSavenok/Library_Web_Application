@@ -17,9 +17,9 @@ async function checkAndRefreshToken() {
         window.location.href = 'api/authentication/loginPage';
         return;
     }
-    const accessTokenLifetime = 60000;
+    const accessTokenLifetime = 5000;
     const decodedToken = parseJwt(token);
-    const expirationTime = decodedToken.exp * 1000; 
+    const expirationTime = decodedToken.exp * 1000;
     const currentTime = Date.now();
     if (expirationTime - currentTime < accessTokenLifetime) {
         const refreshToken = localStorage.getItem('refreshToken');
@@ -29,13 +29,13 @@ async function checkAndRefreshToken() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ accessToken, refreshToken })
         });
-       
+
         if (response.ok) {
             const result = await response.json();
             localStorage.setItem('authToken', result.accessToken); 
             localStorage.setItem('refreshToken', result.refreshToken); 
         } else {
-            window.location.href = '/api/authentication/login';
+            window.location.href = '/api/authentication/loginPage';
         }
     }
 }

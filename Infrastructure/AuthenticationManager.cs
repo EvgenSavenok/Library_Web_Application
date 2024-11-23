@@ -54,6 +54,7 @@ public class AuthenticationManager : IAuthenticationManager
             _user.RefreshTokenExpireTime = DateTime.UtcNow.AddMinutes(refreshTokenLifeTime);
         await _userManager.UpdateAsync(_user);
         var accessToken = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
         return new TokenDto(accessToken, refreshToken);
     }
     private SigningCredentials GetSigningCredentials()
@@ -88,7 +89,7 @@ public class AuthenticationManager : IAuthenticationManager
             audience: jwtSettings.GetSection("validAudience").Value,
             claims: claims,
             expires:
-            DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)),
+                DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings.GetSection("expires").Value)),
             signingCredentials: signingCredentials
         );
         return tokenOptions;

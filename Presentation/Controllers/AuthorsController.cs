@@ -1,4 +1,5 @@
 ﻿using Application.Contracts;
+using Application.Contracts.ServicesContracts;
 using Application.DataTransferObjects;
 using Domain.Entities.RequestFeatures;
 using Microsoft.AspNetCore.Authorization;
@@ -46,7 +47,7 @@ public class AuthorsController : Controller
         return View("~/Views/Authors/AddAuthorPage.cshtml");
     }
 
-    [HttpPost("add"), Authorize]
+    [HttpPost("add")]
     public async Task<IActionResult> CreateAuthor([FromBody] AuthorForCreationDto author)
     {
         if (!ModelState.IsValid)
@@ -57,7 +58,7 @@ public class AuthorsController : Controller
         return Ok();
     }
 
-    [HttpDelete("delete/{id}"), Authorize]
+    [HttpDelete("delete/{id}")]
     public async Task<IActionResult> DeleteAuthor(int id)
     {
         await _authorService.DeleteAuthorAsync(id);
@@ -71,7 +72,7 @@ public class AuthorsController : Controller
         return View("~/Views/Authors/EditAuthorPage.cshtml", authorDto);
     }
 
-    [HttpPut("{id}", Name = "UpdateAuthor"), Authorize]
+    [HttpPut("{id}", Name = "UpdateAuthor")]
     public async Task<IActionResult> UpdateAuthor(int id, [FromBody] AuthorForUpdateDto authorDto)
     {
         if (!ModelState.IsValid)

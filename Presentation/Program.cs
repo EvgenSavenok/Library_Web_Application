@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Application;
 using Application.Contracts;
+using Application.Contracts.ServicesContracts;
 using Application.Services;
 using AutoMapper;
 using Domain.Contracts;
@@ -16,14 +17,14 @@ builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureSqlContext(builder.Configuration);
 builder.Services.ConfigureRepositoryManager();
 builder.Services.AddAutoMapper(typeof(Mapping));
-builder.Services.AddAuthentication();
 builder.Services.ConfigureIdentity();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.AddUseCases();
 builder.Services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
-builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingService, BorrowingService>();
 
 builder.Services.ConfigureSwagger();
 

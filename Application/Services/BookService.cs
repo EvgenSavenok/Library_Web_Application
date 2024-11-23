@@ -1,71 +1,51 @@
-﻿using Application.Contracts;
+﻿using Application.Contracts.ServicesContracts;
+using Application.Contracts.UseCasesContracts.BookUseCasesContracts;
 using Application.DataTransferObjects;
-using AutoMapper;
-using Domain.Entities.Models;
+using Application.UseCases.BookUseCases;
 using Domain.Entities.RequestFeatures;
 
 namespace Application.Services;
 
 public class BookService : IBookService
 {
-    private readonly IRepositoryManager _repository;
-    private readonly IMapper _mapper;
-    private readonly ILoggerManager _logger;
+    private readonly IGetBooksUseCase _getBooksUseCase;
+    private readonly IGetBookByIdUseCase _getBookByIdUseCase;
+    private readonly ICreateBookUseCase _createBookUseCase;
+    private readonly IUpdateBookUseCase _updateBookUseCase;
+    private readonly IDeleteBookUseCase _deleteBookUseCase;
+    private readonly ICountBooksUseCase _countBooksUseCase;
 
-    public BookService(IRepositoryManager repository, IMapper mapper, ILoggerManager logger)
+    public BookService(
+        IGetBooksUseCase getBooksUseCase,
+        IGetBookByIdUseCase getBookByIdUseCase,
+        ICreateBookUseCase createBookUseCase,
+        IUpdateBookUseCase updateBookUseCase,
+        IDeleteBookUseCase deleteBookUseCase,
+        ICountBooksUseCase countBooksUseCase)
     {
-        _repository = repository;
-        _mapper = mapper;
-        _logger = logger;
+        _getBooksUseCase = getBooksUseCase;
+        _getBookByIdUseCase = getBookByIdUseCase;
+        _createBookUseCase = createBookUseCase;
+        _updateBookUseCase = updateBookUseCase;
+        _deleteBookUseCase = deleteBookUseCase;
+        _countBooksUseCase = countBooksUseCase;
     }
 
     public async Task<IEnumerable<BookDto>> GetBooksAsync(BookParameters bookParameters)
-    {
-        var books = await _repository.Book.GetAllBooksAsync(bookParameters, trackChanges: false);
-        return _mapper.Map<IEnumerable<BookDto>>(books);
-    }
+        => await _getBooksUseCase.ExecuteAsync(bookParameters);
 
     public async Task<BookDto> GetBookByIdAsync(int bookId)
-    {
-        var book = await _repository.Book.GetBookAsync(bookId, trackChanges: false);
-        if (book == null)
-        {
-            _logger.LogInfo($"Book with id: {bookId} doesn't exist in the database.");
-        }
-        return _mapper.Map<BookDto>(book);
-    }
+        => await _getBookByIdUseCase.ExecuteAsync(bookId);
 
     public async Task CreateBookAsync(BookForCreationDto bookDto)
-    {
-        var bookEntity = _mapper.Map<Book>(bookDto);
-        _repository.Book.Create(bookEntity);
-        await _repository.SaveAsync();
-    }
+        => await _createBookUseCase.ExecuteAsync(bookDto);
 
     public async Task UpdateBookAsync(int bookId, BookForUpdateDto bookDto)
-    {
-        var bookEntity = await _repository.Book.GetBookAsync(bookId, trackChanges: true);
-        if (bookEntity == null)
-        {
-            _logger.LogInfo($"Book with id: {bookId} doesn't exist in the database.");
-        }
-        _mapper.Map(bookDto, bookEntity);
-        await _repository.SaveAsync();
-    }
+        => await _updateBookUseCase.ExecuteAsync(bookId, bookDto);
 
     public async Task DeleteBookAsync(int bookId)
-    {
-        var book = await _repository.Book.GetBookAsync(bookId, trackChanges: false);
-        if (book == null)
-        {
-            _logger.LogInfo($"Book with id: {bookId} doesn't exist in the database.");
-        }
-        _repository.Book.Delete(book);
-        await _repository.SaveAsync();
-    }
+        => await _deleteBookUseCase.ExecuteAsync(bookId);
 
     public async Task<int> CountBooksAsync(BookParameters requestParameters)
-    {
-        return await _repository.Book.CountBooksAsync(requestParameters);
-    }
+        => await _countBooksUseCase.ExecuteAsync(requestParameters);
 }
